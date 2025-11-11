@@ -118,11 +118,9 @@ git push origin main
 2. Improve
 3. PR with **thermodynamic rigor**
 
-> **@BitcoinDegrowth** — *Stack sats. Reduce entropy. Purify the system.*
-
 ---
-
+> *Stack sats. Reduce entropy. Purify the system.*
 > — **@BitcoinDegrowth**, November 10, 2025
 
 --- 
-**The truth is now documented.**
+
