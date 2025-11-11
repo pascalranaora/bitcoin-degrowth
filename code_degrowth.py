@@ -224,7 +224,6 @@ html = f"""<!DOCTYPE html>
 <div class="container">
   <div class="panel">
     <h1>Bitcoin : an Entropy Vacuum Engine</h1>
-    <h2>Net CO₂ Avoided Since 2018</h2>
     <div style="font-size:0.9em; color:#888; margin-bottom:12px;">
     Data Last Refreshed: <span id="generated-time"></span>
     </div>
@@ -238,7 +237,7 @@ html = f"""<!DOCTYPE html>
       Mining Emissions: <strong>{total_emissions_since_2018:,.0f} Mt</strong><br>
       <strong>Net Avoided CO2 (Million Tons):</strong><br>
       <div class="counter" id="net-counter">0 Mt</div>
-      <h2>Bitcoin Net CO₂ Avoidance</h2>
+      <h2>Bitcoin Net CO₂ Avoidance (Since 2018)</h2>
       <div id="co2-plot" style="height:48vh; margin-top:20px;"></div>
     </div>
 
