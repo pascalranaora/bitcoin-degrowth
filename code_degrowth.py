@@ -195,7 +195,7 @@ html = f"""<!DOCTYPE html>
   <strong style="color:#f7931a; text-shadow:0 0 10px #f7931a;">HODL = Entropy Killer.</strong><br>
   Bitcoin is the greenest money ever created.<br>
   It doesn't grow the economy — it <strong style="color:#f7931a;">purifies it</strong> by shrinking high-entropy goods production.<br>
-  Every satoshi you stack and hold removes one dollar from waste, extraction, and disorder.<br>
+  Every satoshi you stack and hold removes one dollar from waste, extraction, and/or disorder.<br>
   This is not greenwashing. This is <strong style="color:#00ff00;">thermodynamics</strong>.<br><br>
   Net CO₂ Avoided Since 2018: <strong style="color:#00ff00; font-size:1.3em; text-shadow:0 0 12px #00ff00;">{net_co2_avoided:.0f} million tons</strong><br>
   <span style="color:#1da1f2; font-weight:bold;">@BitcoinDegrowth</span><br />
@@ -204,7 +204,7 @@ html = f"""<!DOCTYPE html>
       <h3>Entropy Reduction per $ Invested</h3>
       <p><strong>High-entropy sectors</strong> = high material throughput, waste, and emissions.<br>
       <strong>Bitcoin</strong> = digital, finite, low-maintenance → <strong>low entropy</strong>.</p>
-      <p><strong>Every $1 in BTC avoids:</strong></p>
+      <p><strong>Every $1 in BTC avoids 1$ spent in:</strong></p>
       <table>
         <tr><th>Sector</th><th>Spend (T$)</th><th>CO₂ (Mt)</th><th>g CO₂/$</th></tr>
         <tr><td>Fast Fashion</td><td>2.5</td><td>1,200</td><td><strong>0.480</strong></td></tr>
@@ -214,7 +214,7 @@ html = f"""<!DOCTYPE html>
         <tr><td><strong>Total</strong></td><td><strong>10.655</strong></td><td><strong>4,364</strong></td><td><strong>0.409</strong></td></tr>
       </table>
       <p><strong>Weighted Average:</strong> <code>CO₂/$ = 4,364e6 tons / 10.655e12 USD = 0.409 g CO₂ per $1</code></p>
-      <p><strong>Net CO₂ Avoided(t)</strong> = (Market Cap(t) × 0.409) − Mining Emissions(t)</p>
+      <p><strong>Net CO₂ Avoided(t)</strong> = (Bitcoin Market Cap(t) × 0.409) − Mining Emissions(t)</p>
       <p><strong>Mining Emissions(t)</strong>: Hashrate(t) × Efficiency(t) × 0.475 kg CO₂/kWh</p>
       <p><strong>Efficiency(t)</strong>: Power-law fit on historical ASIC data (J/TH)</p>
       <small>Sources: TradingView, UNEP, IPCC, Statista, CCAF, @BitcoinDegrowth</small>
