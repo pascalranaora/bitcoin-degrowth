@@ -1,5 +1,4 @@
-```markdown
-# Bitcoin Degrowth Dashboard – `README.md`
+# Bitcoin Degrowth Dashboard
 
 > **HODL = Entropy Killer.**  
 > A live, animated, thermodynamically correct dashboard proving **Bitcoin avoids more CO₂ than it emits**.
@@ -128,6 +127,4 @@ git push origin main
 ```
 --- 
 
-**Copy & paste into `README.md`**  
 **@BitcoinDegrowth — The truth is now documented.**
-```
