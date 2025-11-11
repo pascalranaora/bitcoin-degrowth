@@ -4,7 +4,8 @@
 > A live, animated, thermodynamically correct dashboard proving **Bitcoin avoids more CO₂ than it emits**.
 
 Hosted at: [https://github.com/pascalranaora/bitcoin-degrowth](https://github.com/pascalranaora/bitcoin-degrowth)  
-Live demo: `index.html` (open locally or deploy)
+Live demo: [https://pascalranaora.github.io/bitcoin-degrowth/](https://pascalranaora.github.io/bitcoin-degrowth/)
+or in `index.html` (open locally or deploy)
 
 ---
 
