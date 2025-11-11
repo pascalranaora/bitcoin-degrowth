@@ -124,7 +124,6 @@ git push origin main
 
 > **"Bitcoin doesn't grow the economy — it purifies it."**  
 > — **@BitcoinDegrowth**, November 10, 2025
-```
---- 
 
+--- 
 **@BitcoinDegrowth — The truth is now documented.**
