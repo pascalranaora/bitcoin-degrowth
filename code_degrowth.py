@@ -248,7 +248,7 @@ html = f"""<!DOCTYPE html>
     
     <h2>Sector CO₂ Avoidance</h2>
     <div id="sector-pie" style="height:48vh;"></div>
-    <h2>Mining Efficiency increase over time (Power Law)</h2>
+    <h2>Mining Efficiency Power Law Progress</h2>
     <div id="efficiency-plot" style="height:48vh; margin-top:20px;"></div>
   </div>
 </div>
