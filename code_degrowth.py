@@ -234,7 +234,7 @@ html = f"""<!DOCTYPE html>
       <strong>{current_eff:.1f} J/TH</strong>
       <br><br>
       Gross Avoided: <strong>{total_gross_avoided:,.0f} Mt</strong><br>
-      Mining Emissions: <strong>{total_emissions_since_2018:,.0f} Mt</strong><br>
+      Mining Emissions: <b style="color:red;">{total_emissions_since_2018:,.0f} Mt</b><br>
       <strong>Net Avoided CO2 (Million Tons):</strong><br>
       <div class="counter" id="net-counter">0 Mt</div>
       <h2>Bitcoin Net CO₂ Avoidance (Since 2018)</h2>
