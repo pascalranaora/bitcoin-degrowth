@@ -178,7 +178,7 @@ print(f"Efficiency: {current_eff:.1f} J/TH")
 print(f"NET CO₂ AVOIDED: {net_co2_avoided:,.0f} Mt")
 
 # ----------------------------------------------------------------------
-# BREAK-EVEN ANALYSIS – How much displacement (δ) is needed to offset mining?
+# 8. BREAK-EVEN ANALYSIS – How much displacement (δ) is needed to offset mining?
 # ----------------------------------------------------------------------
 # Goal: Find δ such that Gross Avoided = Mining Emissions
 # Formula: δ_break = Mining (Mt/day) / (Δcap (USD/day) × I_high (kg CO₂/$))
@@ -209,13 +209,16 @@ for name, s in SCENARIOS.items():
     δ_break = mining_mt / (AVG_DAILY_INFLOW_USD * avoided_per_dollar_mt)
     break_even_vals[name] = round(δ_break, 3)
 
-# For JS
+# Embed mining data for JS hover
+mining_per_day = [SCENARIOS[sc]["mining_mt_per_day"] for sc in SCENARIOS]
+
 break_even_js = json.dumps({
     "scenarios": list(SCENARIOS.keys()),
     "values": [break_even_vals[sc] for sc in SCENARIOS],
     "current": EMPIRICAL_DISPLACEMENT_RATE,
     "inflow_usd": f"${AVG_DAILY_INFLOW_USD / 1e9:.1f}B",
-    "intensity": f"{HIGH_ENTROPY_INTENSITY_KG_PER_USD:.2f} kg/$"
+    "intensity": f"{HIGH_ENTROPY_INTENSITY_KG_PER_USD:.2f} kg/$",
+    "mining_mt_per_day": mining_per_day  # NEW: for hover
 })
 
 
@@ -302,7 +305,7 @@ html = f"""<!DOCTYPE html>
   <strong style="color:#f7931a; text-shadow:0 0 10px #f7931a;">HODL = Entropy Killer.</strong><br>
   Bitcoin is the greenest money ever created.<br>
   It doesn't grow the economy — it <strong style="color:#f7931a;">purifies it</strong> by shrinking high-entropy goods production.<br>
-  Every dollar/euro/fiat unit that flows into Bitcoin reduces spending in high-entropy sectors by a measurable fraction; the net CO₂ impact is the difference between this displaced emissions and mining emissions.<br>
+  Every dollar/euro/fiat unit that flows into Bitcoin reduces spending in high-entropy sectors by a measurable fraction; the net CO₂ impact is the difference between the amount of value getting displaced emissions and mining emissions.<br>
   This is not greenwashing. This is <strong style="color:#00ff00;">thermodynamics</strong>.<br><br>
   Net CO₂ Avoided Since 2018: <strong style="color:#00ff00; font-size:1.3em; text-shadow:0 0 12px #00ff00;">{net_co2_avoided:.0f} million tons</strong><br>
   <span style="color:#1da1f2; font-weight:bold;">@BitcoinDegrowth</span><br />
@@ -312,7 +315,7 @@ html = f"""<!DOCTYPE html>
     <p><strong>1. High-entropy intensity</strong>: <code>0.51 kg CO₂ / $</code> – derived from EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors). Replaces prior 0.409 g/$.</p>
     <p><strong>2. Displacement rate δ</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys (Coinbase, Motley Fool, Chainalysis). Retail: ~33 %, HNW: ~59 %, Institutions: ~8 %.</p>
     <p><strong>Equation</strong>: Net = Σ(ΔCap × δ × I) − Mining</p>
-    <p><strong>Break-even δ</strong>: Baseline ~{break_even_vals['Baseline']:.0%}, Renewables-2030 ~{break_even_vals['Renewables 2030']:.0%}</p>
+    <p>Note: We are taking a conservative approach and considering that outflows also displaces back to high-entropy intensity sectors</p>
     <h3>Break-even Displacement Rate (δ)</h3>
     <p><strong>Question:</strong> At what % of BTC $inflows must come from high-entropy spending for Bitcoin to <em>break even</em> on CO₂?</p>
 
@@ -388,8 +391,6 @@ document.getElementById('generated-time').textContent = new Date().toLocaleStrin
 
   const data = {js_data_str};
   const finalNet = {net_co2_avoided:.0f};
-  const breakEven = {break_even_js};
-
   const history = data.map(d => ({{
     date: new Date(d.date),
     gross: d.cum_gross_avoided_js,
@@ -454,8 +455,10 @@ document.getElementById('generated-time').textContent = new Date().toLocaleStrin
     paper_bgcolor: '#000', plot_bgcolor: '#000', font: {{color: '#aaa'}}
   }}, {{responsive: true}});
 
-  // BREAK-EVEN PLOT (Plotly, no SVG)
-  Plotly.newPlot('break-even-plot', [
+// BREAK-EVEN PLOT
+const be = {break_even_js};
+
+Plotly.newPlot('break-even-plot', [
   {{
     x: be.scenarios,
     y: be.values,
@@ -464,8 +467,8 @@ document.getElementById('generated-time').textContent = new Date().toLocaleStrin
     marker: {{color: ['#3498db', '#2ecc71']}},
     text: be.values.map(v => (v*100).toFixed(1) + '%'),
     textposition: 'outside',
-    hovertemplate: '<b>%{{x}}</b><br>δ = %{{y:.1%}}<br>Mining: %{{customdata[0]}} Mt/day<extra></extra>',
-    customdata: be.scenarios.map((s,i) => [SCENARIOS[s].mining_mt_per_day])
+    hovertemplate: '<b>%{{x}}</b><br>δ = %{{y:.1%}}<br>Mining: %{{customdata}} Mt/day<extra></extra>',
+    customdata: be.mining_mt_per_day  
   }},
   {{
     x: be.scenarios,
