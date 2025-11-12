@@ -29,13 +29,8 @@ pip install -r requirements.txt
    ```bash
    python code_degrowth.py
    ```
-   This executes the simulation, outputs key metrics (e.g., net CO₂ avoided), and generates a basic plot of cumulative impacts.
+   This executes the simulation, outputs key metrics (e.g., net CO₂ avoided), and generates a basic plot of cumulative impacts and other metrics in an html format.
 
-3. Launch the interactive dashboard:
-   ```bash
-   streamlit run dashboard.py
-   ```
-   Open [http://localhost:8501](http://localhost:8501) to explore scenarios.
 
 ### Example Output
 Running `code_degrowth.py` prints:
@@ -47,7 +42,7 @@ Break-even δ: 16.3% (Current: 34% | Safety Margin: 2.1x)
 
 ## 📊 Dashboard Overview
 
-The live dashboard at [bitcoin-degrowth.org](https://www.bitcoin-degrowth.org/) is powered by Streamlit and updates in real-time using APIs from TradingView and CoinMetrics. It visualizes Bitcoin's "entropy vacuum" effect: inflows displace high-entropy spending, creating a feedback loop of reduced emissions.
+The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace high-entropy spending, creating a feedback loop of reduced emissions.
 
 ### Key Sections & Metrics (v2.0 - Updated Nov 2025)
 - **Header & Summary**:
