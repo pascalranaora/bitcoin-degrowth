@@ -11,7 +11,7 @@ As of November 12, 2025, the dashboard shows Bitcoin has avoided **135 million t
 
 ### Prerequisites
 - Python 3.8+
-- Required libraries: `numpy`, `pandas`, `matplotlib`, `streamlit` (for local dashboard), `requests` (for API data)
+- Required libraries: `numpy`, `pandas`, `matplotlib`, `requests` (for API data)
 
 Install dependencies:
 ```bash
@@ -80,7 +80,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
   - Safety Margin: 2.1× (current δ exceeds break-even robustly).
 
 - **Core Equation**:
-  - $$NetCO_{2}_e = \sum (\Delta \text{Cap} \times \delta \times I) - Mining_{emissions}$$ 
+  - $$CO_{2} Net_{emissions}$$ $$= \sum (\Delta \text{Cap} \times \delta \times I) - Mining_{emissions}$$ 
   - $$\(\Delta \text{Cap}\)$$: Daily market cap change (~$1.8B inflows, 2025 avg).
   - Conservative: Includes outflows reversing displacement.
 
@@ -104,22 +104,16 @@ This project quantifies Bitcoin's degrowth potential using a net emissions frame
 
 ### Key Formula Derivation
 1. **Displacement Calculation**:
-   - $$\
-   \delta = \sum (w_i \times \delta_i) \quad \text{where } w_i \text{ are inflow weights (retail: 60%, HNW: 30%, inst: 10%)}
-   \$$
+   - $$\delta = \sum (w_i \times \delta_i) \quad$$ where $$w_i$$ are inflow weights (retail: 60%, HNW: 30%, inst: 10%) 
    - Example: $$\(0.6 \times 0.33 + 0.3 \times 0.59 + 0.1 \times 0.08 = 0.34\)$$.
    - CI via bootstrapping survey SE (5–10%).
 
 2. **Daily Net CO₂**:
-   - $$\
-   \text{Net} = (\Delta \text{Cap} \times \delta \times I) - \text{Mining}
-   \$$
+   - $$\text{Net} = (\Delta \text{Cap} \times \delta \times I) - \text{Mining}$$
    - Example (2025): $$\((1.8 \times 10^9 \times 0.34 \times 0.51) - 0.15 = 0.162\)$$ Mt/day saved.
 
 4. **Break-Even δ**:
-   - $$\
-   \delta_{break} = \frac{\text{Mining}}{\Delta \text{Cap} \times I}
-   \$$
+   - $$\delta_{break}$$ $$= \frac{\text{Mining}}{\Delta \text{Cap} \times I}$$
    - Solve by setting Net = 0: Algebraic rearrangement for transparency.
    - To verify: For closed-ended math, start with Net equation, isolate δ: $$\(\delta = \frac{\text{Mining} + \text{Target Net}}{\Delta \text{Cap} \times I}\)$$ (Target=0 for break-even).
 
