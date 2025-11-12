@@ -66,7 +66,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
   - 0.51 kg CO₂ per $ displaced (from EXIOBASE 3.8+ multi-regional IO database).
 
 - **Break-Even Analysis**:
-  - Baseline (2025): $$δ_break = 16.3%$$.
+  - Baseline (2025): $$δ_{break} = 16.3%$$.
   - 2030 Renewables Scenario: 10.9%.
   - Safety Margin: 2.1× (current δ exceeds break-even robustly).
 
