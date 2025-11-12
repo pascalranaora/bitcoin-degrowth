@@ -3,7 +3,7 @@
 > **HODL = Entropy Killer.**  
 > A live, animated, thermodynamically sound dashboard proving **Bitcoin avoids more CO₂ than it emits**.
 
-Live demo: [https://pascalranaora.github.io/bitcoin-degrowth/](https://pascalranaora.github.io/bitcoin-degrowth/)
+Live demo: [https://www.bitcoin-degrowth.org](https://pascalranaora.github.io/bitcoin-degrowth/)
 or in `index.html` (open locally or deploy)
 
 ---
