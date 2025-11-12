@@ -14,6 +14,9 @@ This dashboard calculates **net CO₂ avoided** by Bitcoin since 2018 by compari
 - **Gross CO₂ avoided** = Market Cap × 0.409 g CO₂/$ (diverted from high-entropy sectors)
 - **Mining emissions** = Hashrate × ASIC Efficiency × Grid Intensity (live from Cambridge CBECI)
 
+Falsiable Hypothesis: “Every dollar that flows into Bitcoin reduces spending in high-entropy sectors by a measurable fraction; the net CO₂ impact is the difference between this displaced emissions and mining emissions.”
+
+
 **Result (Nov 10, 2025):**  
 > **Net CO₂ Avoided: ~1,800,000 Mt**  
 > **Bitcoin avoids 2.8× more CO₂ than it emits**
