@@ -104,21 +104,21 @@ This project quantifies Bitcoin's degrowth potential using a net emissions frame
 
 ### Key Formula Derivation
 1. **Displacement Calculation**:
-   $$\
+   - $$\
    \delta = \sum (w_i \times \delta_i) \quad \text{where } w_i \text{ are inflow weights (retail: 60%, HNW: 30%, inst: 10%)}
    \$$
    - Example: $$\(0.6 \times 0.33 + 0.3 \times 0.59 + 0.1 \times 0.08 = 0.34\)$$.
    - CI via bootstrapping survey SE (5–10%).
 
 2. **Daily Net CO₂**:
-   $$\
+   - $$\
    \text{Net} = (\Delta \text{Cap} \times \delta \times I) - \text{Mining}
    \$$
    - Example (2025): $$\((1.8 \times 10^9 \times 0.34 \times 0.51) - 0.15 = 0.162\)$$ Mt/day saved.
 
-3. **Break-Even δ**:
-   $$\
-   \delta_{\text{break}} = \frac{\text{Mining}}{\Delta \text{Cap} \times I}
+4. **Break-Even δ**:
+   - $$\
+   \delta_{break} = \frac{\text{Mining}}{\Delta \text{Cap} \times I}
    \$$
    - Solve by setting Net = 0: Algebraic rearrangement for transparency.
    - To verify: For closed-ended math, start with Net equation, isolate δ: $$\(\delta = \frac{\text{Mining} + \text{Target Net}}{\Delta \text{Cap} \times I}\)$$ (Target=0 for break-even).
