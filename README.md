@@ -80,7 +80,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
   - Safety Margin: 2.1× (current δ exceeds break-even robustly).
 
 - **Core Equation**:
-  - $$\Net CO{_2} = \sum (\Delta \text{Cap} \times \delta \times I) - Mining_{emissions}\$$
+  - $$Net}CO_{2} = \sum (\Delta \text{Cap} \times \delta \times I) - Mining_{emissions}$$
   - $$\(\Delta \text{Cap}\)$$: Daily market cap change (~$1.8B inflows, 2025 avg).
   - Conservative: Includes outflows reversing displacement.
 
