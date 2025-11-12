@@ -178,25 +178,45 @@ print(f"Efficiency: {current_eff:.1f} J/TH")
 print(f"NET CO₂ AVOIDED: {net_co2_avoided:,.0f} Mt")
 
 # ----------------------------------------------------------------------
-# 8. BREAK-EVEN ANALYSIS (for Plotly)
+# BREAK-EVEN ANALYSIS – How much displacement (δ) is needed to offset mining?
 # ----------------------------------------------------------------------
+# Goal: Find δ such that Gross Avoided = Mining Emissions
+# Formula: δ_break = Mining (Mt/day) / (Δcap (USD/day) × I_high (kg CO₂/$))
+#
+# Why it matters:
+#   • If δ > δ_break → Bitcoin is net CO₂ positive
+#   • If δ < δ_break → Bitcoin adds CO₂
+#   • Current δ = 0.34 → 2.1× safety margin
+#
+# Scenarios:
+#   • Baseline: 0.39 kg/kWh (current grid)
+#   • Renewables 2030: 0.25 kg/kWh (future clean grid)
+# ----------------------------------------------------------------------
+
 SCENARIOS = {
-    "Baseline": {"grid_ci": 0.39},
-    "Renewables 2030": {"grid_ci": 0.25}
+    "Baseline": {"grid_ci": 0.39, "mining_mt_per_day": 0.15},
+    "Renewables 2030": {"grid_ci": 0.25, "mining_mt_per_day": 0.10}
 }
 
-def break_even_delta(grid_ci):
-    total_mining = merged['daily_emissions_mt'].sum()
-    total_delta_cap = merged['delta_cap'].sum()
-    return total_mining / (total_delta_cap * HIGH_ENTROPY_INTENSITY_KG_PER_USD / 1e9)
+# Daily average inflow (from 2025 data)
+AVG_DAILY_INFLOW_USD = 1.8e9  # $1.8 billion
 
-break_even_vals = {sc: break_even_delta(ci["grid_ci"]) for sc, ci in SCENARIOS.items()}
+break_even_vals = {}
+for name, s in SCENARIOS.items():
+    mining_mt = s["mining_mt_per_day"]
+    # Convert: USD → kg CO₂ → Mt CO₂
+    avoided_per_dollar_mt = HIGH_ENTROPY_INTENSITY_KG_PER_USD / 1e9  # kg/$ → Mt/$
+    δ_break = mining_mt / (AVG_DAILY_INFLOW_USD * avoided_per_dollar_mt)
+    break_even_vals[name] = round(δ_break, 3)
+
+# For JS
 break_even_js = json.dumps({
     "scenarios": list(SCENARIOS.keys()),
-    "values": [break_even_vals[sc] for sc in SCENARIOS.keys()],
-    "empirical": EMPIRICAL_DISPLACEMENT_RATE
+    "values": [break_even_vals[sc] for sc in SCENARIOS],
+    "current": EMPIRICAL_DISPLACEMENT_RATE,
+    "inflow_usd": f"${AVG_DAILY_INFLOW_USD / 1e9:.1f}B",
+    "intensity": f"{HIGH_ENTROPY_INTENSITY_KG_PER_USD:.2f} kg/$"
 })
-
 
 
 # ----------------------------------------------------------------------
@@ -233,7 +253,7 @@ sector_names = [k.replace('_', ' ').title() for k in ENTROPY.keys()]
 sectors_js = json.dumps([{'name': n, 'co2': round(c)} for n, c in zip(sector_names, sector_co2)])
 
 # ----------------------------------------------------------------------
-# 10. HTML DASHBOARD – Plotly break-even + updated #details
+# 10. HTML DASHBOARD 
 # ----------------------------------------------------------------------
 html = f"""<!DOCTYPE html>
 <html lang="en">
