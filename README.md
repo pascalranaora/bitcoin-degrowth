@@ -47,7 +47,7 @@ pip install pandas requests beautifulsoup4 tvdatafeed numpy scipy
 ### 2. Run the Generator
 
 ```bash
-python generate_dashboard.py
+python code_degrowth.py
 ```
 
 > Generates `index.html` in the same folder.
