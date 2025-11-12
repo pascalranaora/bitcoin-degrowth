@@ -187,22 +187,6 @@ In `code_degrowth.py`, the logic is implemented as follows (pseudocode based on 
 
 This ensures transparency: δ isn't arbitrary but empirically grounded, with code allowing easy updates (e.g., new surveys).
 
-## 🛠️ Code Structure
-
-- **`code_degrowth.py`**: Core simulation engine.
-  - Imports: `numpy`, `pandas`, `scipy` (for bootstrapping), `requests` (API fetches).
-  - Key Functions: As above (calc_delta, net_co2, etc.).
-  - Main: Runs baseline sim, prints metrics, saves CSV output.
-
-- **`dashboard.py`**: Streamlit app for viz.
-  - Sliders for δ/I; plots via Matplotlib/Altair.
-
-- **`requirements.txt`**: Lists deps.
-- **`data/`**: Sample CSVs (surveys, historical inflows).
-- **`notebooks/`**: Jupyter for experiments (e.g., sensitivity analysis).
-
-To extend: Add your own API keys in `.env` for live data.
-
 ## 🤝 Contributing
 1. Fork the repo.
 2. Create a feature branch (`git checkout -b feature/entropy-viz`).
@@ -216,7 +200,7 @@ MIT License – Free to fork, extend, and HODL. See [LICENSE](LICENSE).
 
 ## 🙏 Acknowledgments
 - Built with ❤️ by Pascal Ranaora.
-- Thanks to EXIOBASE team, Chainalysis researchers, and the Bitcoin degrowth community.
-- Powered by open-source: Streamlit, NumPy, Pandas.
+- Thanks to EXIOBASE team, Chainalysis researchers, and the Bitcoin Community.
+- Powered by open-source : NumPy, Pandas.
 
-**Bitcoin: Shrinking the entropy beast, one satoshi at a time.** Questions? DM on X or open an issue.
+**Bitcoin: Shrinking the entropy beast, one satoshi at a time.** 
