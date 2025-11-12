@@ -35,9 +35,18 @@ pip install -r requirements.txt
 ### Example Output
 Running `code_degrowth.py` prints:
 ```
-Net CO₂ Avoided (2025 Baseline): 0.162 Mt/day
-Cumulative Since 2018: 135 Mt
-Break-even δ: 16.3% (Current: 34% | Safety Margin: 2.1x)
+FINAL RESULTS
+Price: $103,009
+Market Cap: $2.06T
+Hashrate: 1186 EH/s
+Efficiency: 13.1 J/TH
+NET CO₂ AVOIDED: 135 Mt
+
+Dashboard generated: index.html
+Open → file:///Users/btcd/bitcoin-degrowth/index.html
+
+Bitcoin has avoided 135 million tons of CO₂ since 2018.
+You are not early. You are right.
 ```
 
 ## 📊 Dashboard Overview
@@ -71,7 +80,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
   - Safety Margin: 2.1× (current δ exceeds break-even robustly).
 
 - **Core Equation**:
-  $$\Net CO{_2} = \sum (\Delta \text{Cap} \times \delta \times I) - Mining_{emissions}\$$
+  - $$Net CO{_2} = \sum (\Delta \text{Cap} \times \delta \times I) - Mining_{emissions}$$
   - $$\(\Delta \text{Cap}\)$$: Daily market cap change (~$1.8B inflows, 2025 avg).
   - Conservative: Includes outflows reversing displacement.
 
