@@ -247,7 +247,6 @@ js_data = merged[[
     'efficiency_jth'
 ]].to_dict('records')
 js_data_str = json.dumps(js_data)
-print(js_data_str)
 
 # Sector pie (scaled by displacement)
 sector_co2 = [current_cap * EMPIRICAL_DISPLACEMENT_RATE * (v['co2'] / v['spend']) / 1e6
