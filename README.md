@@ -1,4 +1,4 @@
-# Bitcoin Degrowth: Entropy Vacuum Engine
+# Bitcoin Degrowth Dashboard Full Scope 3
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/pascalranaora/bitcoin-degrowth)  
 [![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-green?logo=web)](https://www.bitcoin-degrowth.org/)
