@@ -103,6 +103,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
 - **Mining Efficiency**: Power-law decline in J/TH (from 89 J/TH in 2018 to 13.1 J/TH in 2025).
 
 ### Future Enhancements (Roadmap)
+- The static displacement is a good first approximation but we need more robust regular surveys and longitudinal studies consumer spending/sentiment/investing portfolio to evaluate effects of Bitcoin HODLing on consumerism
 - User input form for custom δ/I with instant Monte-Carlo uncertainty bands.
 - Export to PDF/CSV for reports.
 - Live API integration and more accurate surveys and peer-reviewed studies on consumer consumption behaviors deviation and/or portfolio investment allocation for real-time inflows and displacement rate computations.
