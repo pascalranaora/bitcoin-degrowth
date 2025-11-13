@@ -3,7 +3,7 @@
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/pascalranaora/bitcoin-degrowth)
 [![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-green?logo=web)](https://www.bitcoin-degrowth.org/)
 
-**HODL = Entropy Killer.** Bitcoin isn't just digital gold—it's the greenest money ever created. By capping supply at 21 million coins, Bitcoin incentivizes holding over endless consumption, shrinking high-entropy (carbon-intensive) economic activity. This project models Bitcoin's net environmental impact: the CO₂ emissions *displaced* from reduced spending on wasteful goods minus the emissions from mining. Spoiler: It's a net positive, with a growing safety margin as adoption rises and renewables scale.
+**HODL = Entropy Killer.** Bitcoin isn't just digital gold—it's the greenest money ever created. By capping supply at 21 million coins, Bitcoin incentivizes holding over endless consumption, shrinking high-entropy (carbon-intensive) economic activity. This project aims to model Bitcoin's net environmental impact by accounting for what we would call Value Displacement: the CO₂ emissions *displaced* from reduced spending on wasteful goods minus the emissions from mining. Spoiler: It's a net positive, with a growing safety margin as adoption rises and renewables scale.
 
 As of November 12, 2025, the dashboard shows Bitcoin has avoided **135 million tons of CO₂ since 2018**, with daily net savings accelerating. Dive in: [Live Dashboard](https://www.bitcoin-degrowth.org/).
 
@@ -93,7 +93,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
 ### Future Enhancements (Roadmap)
 - User input form for custom δ/I with instant Monte-Carlo uncertainty bands.
 - Export to PDF/CSV for reports.
-- Live API integration for real-time inflows (CoinGecko/TradingView).
+- Live API integration and more accurate surveys and peer-reviewed studies on consumer consumption behaviors deviation and/or portfolio investment allocation for real-time inflows and displacement rate computations. How Bitcoin is "eating up" value that would have gone to other high-entropy goods & services production/spending.
 - Mobile-responsive design.
 
 Data last refreshed: Real-time (hash rate/efficiency from CoinMetrics; cap from TradingView).
