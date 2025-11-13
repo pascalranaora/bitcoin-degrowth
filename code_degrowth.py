@@ -343,11 +343,11 @@ current_eff   = merged['efficiency_jth'].iloc[-1]
 secondary_annual_mt = merged['secondary_mt'].mean() * 365
 bau_annual_mt = bau_mt_per_day * 365
 
-# ----------------------------------------------------------------------
-# 12. BREAK-EVEN ANALYSIS – How much displacement (δ) is needed to offset mining?
-# ----------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
+# 12. BREAK-EVEN ANALYSIS – How much displacement (δ) is needed to offset Scope 3 modelling?
+# --------------------------------------------------------------------------------------------------
 # Goal: Find δ such that Gross Avoided = Mining Emissions
-# Formula: δ_break = Mining (Mt/day) / (Δcap (USD/day) × I_high (kg CO₂/$))
+# Formula: δ_break = (Mining + BAU Scope 2 + Scope 3) (Mt/day) / (Δcap (USD/day) × I_high (kg CO₂/$))
 #
 # Why it matters:
 #   • If δ > δ_break → Bitcoin is net CO₂ positive
@@ -358,7 +358,7 @@ bau_annual_mt = bau_mt_per_day * 365
 #   • Baseline: 0.39 kg/kWh (current grid)
 #   • Renewables 2030: 0.25 kg/kWh (future clean grid)
 # Reference: IEA Net Zero by 2050 — https://www.iea.org/reports/net-zero-by-2050
-# ----------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 SCENARIOS = {
     "Baseline 2025": {
