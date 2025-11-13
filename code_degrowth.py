@@ -336,10 +336,11 @@ html = f"""<!DOCTYPE html>
     </ul>
 
     <p>Even in a clean-grid future, <strong>only 1 in 9 dollars</strong> needs to come from luxury/real-estate for Bitcoin to be net CO₂ positive.</p>
-    <h3>Future Enhancements</h3>
+    <h3>Future Enhancements or Work</h3>
     <ul>
       <li>User input form (δ, I) → instant recalculation?</li>
       <li>Monte-Carlo uncertainty bands on all plots?</li>
+      <li>More accurate surveys/consumer behaviors trackking and dynamic displacement rate computation over time</li>
       <li>Export CSV / JSON of full time-series</li>
       <li>Live API for real-time survey data → auto-update δ - tricky</li>
     </ul>
