@@ -122,7 +122,7 @@ This project quantifies Bitcoin's degrowth potential using a net emissions frame
 - **Mining Emissions**: 0.15 Mt/day (UNEP/IPCC/CCAF; drops to 0.10 Mt/day by 2030 w/ 80% renewables).
 - **Conservative Bias**: Assumes outflows fully reverse displacement; no compounding HODL effects.
 - Sensitivities: ±20% on δ yields Net range 0.05–0.28 Mt/day (still positive).
-
+- Would have to include secondary emissions of producing ASICS goods and an average BAU usage of the Network (runnings nodes and transacting)
 Full code in `code_degrowth.py` includes Monte-Carlo sims for CI.
 
 ## 📚 Sources & Data
