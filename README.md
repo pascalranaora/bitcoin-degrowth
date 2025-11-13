@@ -139,7 +139,7 @@ This project quantifies Bitcoin's degrowth potential using a **net emissions fra
 
 | Component | Formula | Value (2025) | Source |
 |---------|--------|-------------|--------|
-| $E_{\text{BAU}}$ | $$\frac{(N_{\text{nodes}} \times P_{\text{node}} + N_{\text{LN}} \times P_{\text{LN}}) \times 8760}{10^6} \times 0.475$ | **1.0 Mt/year** | Bitnodes.io, 1ml.com, Springer 2025 |
+| $E_{\text{BAU}}$ | $$\frac{(N_{\text{nodes}} \times P_{\text{node}} + N_{\text{LN}} \times P_{\text{LN}}) \times 8760}{10^6} \times 0.475$$ | **1.0 Mt/year** | Bitnodes.io, 1ml.com, Springer 2025 |
 | $E_{\text{ASIC}}$ | $$\frac{H \times 0.10 \times 1000}{10^9} + \frac{H \times 0.10 \times 50}{10^9}$$ | **12.4 Mt/year** | Talens-Perales (2025), Onat et al. (2025), de Vries (2021) |
 | $E_{\text{facilities}}$ | $$\frac{15 \times 10^3 \times 500}{4 \times 10^6}$$ | **0.5 Mt/year** | Industry LCA averages |
 
