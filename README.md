@@ -180,7 +180,7 @@ This project quantifies Bitcoin's degrowth potential using a **net emissions fra
 | **Facility Construction** | Industry LCA (amortized 500 t CO₂/MW over 15 yr) | — |
 
 - **Emissions Data**: EXIOBASE 3.8+ (embodied CO₂), UNEP/IPCC (mining baselines), Statista/CCAF (efficiency).
-- **Market Data**: TradingView (cap/inflows), CoinMetrics (hash rate).
+- **Market Data**: TradingView (cap/inflows, hashrate, bitcoin price).
 - **Broader Reading**:
   - [Bitcoin Sufficiency Protocol](https://www.sufficiencyprotocol.org) (Nov 2025).
   - [Bitcoin Magazine: The Degrowth of Bitcoin](https://bitcoinmagazine.com/culture/the-degrowth-of-bitcoin) (Aug 2024).
@@ -204,10 +204,10 @@ MIT License – Free to fork, extend, and HODL. See [LICENSE](LICENSE).
 ---
 
 ## Acknowledgments
-- Built with love by Pascal Ranaora.
+- Built with love by @BitcoinDegrowth.
 - Thanks to EXIOBASE team, Talens-Perales, Onat, de Vries, Bitnodes, 1ml.com, Chainalysis researchers, and the Bitcoin Community.
 - Powered by open-source: NumPy, Pandas, Plotly.
 
 **Bitcoin: Shrinking the entropy beast, one satoshi at a time.**  
-**v3.5 — Full Scope 3, maximum conservatism, still net positive.**  
+**Full Scope 3, maximum conservatism, still net positive.**  
 — @BitcoinDegrowth, November 13, 2025
