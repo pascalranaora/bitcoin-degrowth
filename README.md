@@ -87,7 +87,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
 ### Visualizations
 - **Cumulative Net CO₂ Chart**: Line plot showing avoided vs. mining emissions (2018–2030 projection).
 - **δ Breakdown Bar Chart**: Stacked bars by investor type (retail/HNW/institutions).
-- **Sector CO2 Aviodance**: CO2 displaced per sector (example)
+- **Sector CO2 Avoidance**: CO2 displaced per sector (example)
 - **Mining Efficiency**: Power Law observed in Mining Efficiency progress over the Year (less amount of energy required per hash computed)
 
 ### Future Enhancements (Roadmap)
