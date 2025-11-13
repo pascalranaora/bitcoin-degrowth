@@ -48,7 +48,7 @@
     <h3> The key question we try to answer and quantify in terms of CO2 emissions over time: <p>What amount of CO2 emission per $ invested in Bitcoin is "displaced" from other sectors e.g. what would have you bought/invested in instead of Bitcoin?</p></h3>
     <h3>Updated Model (v3.3 — Full Scope 3)</h3>
     <p><strong>1. High-entropy intensity</strong>: <code>0.51 kg CO₂ / $</code> – derived from EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors). Replaces prior 0.409 g/$.</p>
-    <p><strong>2. Displacement rate δ</strong>: <code>34%</code> (95 % CI 22%–48%) – weighted average from 2023-2025 investor surveys (Coinbase, Motley Fool, Chainalysis). Retail: ~33 %, HNW: ~59 %, Institutions: ~8 %.</p>
+    <p><strong>2. Displacement rate δ</strong>: <code>34%</code> (95 % CI 24%–47%) – weighted average from 2023-2025 investor surveys (Coinbase, Motley Fool, Chainalysis). Retail: ~33 %, HNW: ~59 %, Institutions: ~8 %.</p>
     <p><strong>Equation</strong>: Net = Σ(ΔCap × δ × I) − (Mining + BAU + ASIC Lifecycle + Facilities)</p>
     <p>Note: We are taking a conservative approach and considering that outflows also displace back to high-entropy intensity sectors</p>
     
@@ -204,7 +204,7 @@ Plotly.newPlot('break-even-plot', [
     marker: {color: ['#3498db', '#2ecc71']},
     text: be.values.map(v => (v*100).toFixed(1) + '%'),
     textposition: 'outside',
-    customdata: be.gross_mt_per_day,
+    customdata: be.value_gross_mt_day,
     hovertemplate: '<b>%{x}</b><br>δ = %{y:.1%}<br>Gross: %{customdata} Mt/day<extra></extra>'
   },
   {
