@@ -3,7 +3,7 @@
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/pascalranaora/bitcoin-degrowth)  
 [![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-green?logo=web)](https://www.bitcoin-degrowth.org/)
 
-**HODL = Entropy Killer.** Bitcoin isn't just digital gold—it's the greenest money ever created. By capping supply at 21 million coins, Bitcoin incentivizes holding over endless consumption, shrinking high-entropy (carbon-intensive) economic activity. This project aims to model Bitcoin's net environmental impact by accounting for what we would call **Value Displacement**: the CO₂ emissions *displaced* from reduced spending on wasteful goods minus the emissions from mining. **Spoiler: It's a net positive, with a growing safety margin as adoption rises and renewables scale.**
+**HODL = Entropy Killer.** Bitcoin isn't just digital gold—it's the greenest money ever created. By capping supply at 21 million coins, Bitcoin incentivizes holding over endless consumption, shrinking high-entropy (carbon-intensive) economic activity. This project aims to model Bitcoin's net environmental impact by accounting for what we would call **Value Displacement**: the CO₂ emissions *displaced* from reduced spending on wasteful goods minus the emissions from mining and operating the network day-to-day (BAU). **Spoiler: It's a net positive, with a growing safety margin as adoption rises and renewables scale.**
 
 **As of November 13, 2025**, the dashboard shows Bitcoin has avoided **24 million tons of CO₂ since 2018**, with daily net savings accelerating.  
 **Live Dashboard →** [https://www.bitcoin-degrowth.org/](https://www.bitcoin-degrowth.org/)
