@@ -11,7 +11,6 @@ FULL SCOPE 3 COVERAGE:
 5. Transaction Validation — Scope 3
 6. Miner Facility Construction — Scope 3
 
-v2 DETAILS SECTION PRESERVED + ENHANCED WITH FULL SCOPE 3
 """
 
 import requests
