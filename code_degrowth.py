@@ -310,6 +310,7 @@ html = f"""<!DOCTYPE html>
   <span style="color:#1da1f2; font-weight:bold;">@BitcoinDegrowth</span><br />
   <button class="btn-details" onclick="toggleDetails()">Show Methodology</button>
   <div id="details" class="details">
+    <h3> The key question we try to answer and quantify in termes of CO2 emissions over time : <p>What amount of CO2 emission per $ invested in Bitcoin is "displaced" from other sectors e.g. what would have you bought/invested in instead of Bitcoin?</p></h3>
     <h3>Updated Model (v2.0)</h3>
     <p><strong>1. High-entropy intensity</strong>: <code>0.51 kg CO₂ / $</code> – derived from EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors). Replaces prior 0.409 g/$.</p>
     <p><strong>2. Displacement rate δ</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys (Coinbase, Motley Fool, Chainalysis). Retail: ~33 %, HNW: ~59 %, Institutions: ~8 %.</p>
@@ -336,11 +337,12 @@ html = f"""<!DOCTYPE html>
     </ul>
 
     <p>Even in a clean-grid future, <strong>only 1 in 9 dollars</strong> needs to come from luxury/real-estate for Bitcoin to be net CO₂ positive.</p>
-    <h3>Future Enhancements or Work</h3>
+    
+    <h3>Potential for Future Enhancements and Studies</h3>
     <ul>
-      <li>User input form (δ, I) → instant recalculation?</li>
-      <li>Monte-Carlo uncertainty bands on all plots?</li>
       <li>More accurate surveys/consumer behaviors trackking and dynamic displacement rate computation over time</li>
+      <li>User input form (δ, I) → instant recalculation</li>
+      <li>Monte-Carlo uncertainty bands on all plots</li>
       <li>Export CSV / JSON of full time-series</li>
       <li>Live API for real-time survey data → auto-update δ - tricky</li>
     </ul>
