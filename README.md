@@ -11,7 +11,7 @@ As of November 12, 2025, the dashboard shows Bitcoin has avoided **135 million t
 
 ### Prerequisites
 - Python 3.8+
-- Required libraries: `numpy`, `pandas`, `matplotlib`, `requests` (for API data)
+- Required libraries: `numpy`, `pandas`, `matplotlib`, `requests` (for API data), `scipy`, `beautifulsoup`, `tvdatafeed`
 
 Install dependencies:
 ```bash
