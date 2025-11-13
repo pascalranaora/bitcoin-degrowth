@@ -142,6 +142,7 @@ The displacement rate (δ) is derived from aggregated data across three primary 
 - **Emissions Data**: EXIOBASE 3.8+ (embodied CO₂), UNEP/IPCC (mining baselines), Statista/CCAF (efficiency).
 - **Market Data**: TradingView (cap/inflows), CoinMetrics (hash rate).
 - **Broader Reading**:
+  - [Bitcoin Sufficiency Protocol - Local currencies community-managed backed by Bitcoin](https://www.sufficiencyprotocol.org) (Nov 2025).
   - [Bitcoin Magazine: The Degrowth of Bitcoin](https://bitcoinmagazine.com/culture/the-degrowth-of-bitcoin) (Aug 2024).
   - [Medium: Radical System Change—Bitcoin & Degrowth](https://medium.com/@example/radical-system-change-bitcoin-degrowth) (Sep 2022).
 
