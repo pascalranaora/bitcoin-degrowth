@@ -426,7 +426,112 @@ sector_names = [k.replace('_', ' ').title() for k in ENTROPY.keys()]
 sectors_js = json.dumps([{'name': n, 'co2': round(c)} for n, c in zip(sector_names, sector_co2)])
 
 # ----------------------------------------------------------------------
-# 14. HTML DASHBOARD — FULL SCOPE 3 
+# 14. TRANSLATIONS
+# ----------------------------------------------------------------------
+EN = {
+    # Header
+    "title": "Bitcoin Degrowth Dashboard — Full Scope 3",
+    "motto": "HODL = Entropy Killer.",
+    "full_scope": "Full Scope 3: ASIC lifecycle, nodes, facilities, Lightning.",
+    "net_avoided": "Net CO₂ Avoided Since 2018: <strong class=\"net-positive\">{net_co2_avoided:.0f} million tons</strong>",
+    "show_methodology": "Show Full Methodology",
+    "open_source": "Open Source",
+
+    # Stats panel
+    "live": " ",
+    "cap": "MarketCap",
+    "hashrate": "EH/s",
+    "efficiency": "J/TH",
+    "gross_avoided": "Gross Avoided:",
+    "total_gross": "Total Gross Emissions:",
+    "net_avoided_label": "Net Avoided (Million Tons):",
+    "co2_plot_title": "Cumulative CO₂ Impact — Full Scope 3 (Mt)",
+    "break_even_title": "Break-even δ — Full Scope 3",
+    "sector_pie_title": "CO₂ Avoided by Sector (Current Year)",
+    "efficiency_plot_title": "ASIC Efficiency — Power-Law Decline",
+
+    # Methodology
+    "methodology_title": "The key question we try to answer and quantify in terms of CO2 emissions over time:",
+    "methodology_question": "What amount of CO2 emission per $ invested in Bitcoin is \"displaced\" from other sectors e.g. what would have you bought/invested in instead of Bitcoin?",
+    "model_version": "Updated Model (Full Scope 3)",
+    "high_entropy": "High-entropy intensity",
+    "displacement_rate": "Displacement rate δ",
+    "equation": "Equation",
+    "conservative": "Note: We are taking a conservative approach and considering that outflows also displace back to high-entropy intensity sectors",
+    "scope3_breakdown": "Full Scope 3 Emissions Breakdown",
+    "mining_op": "Mining (Operational)",
+    "bau": "BAU (Nodes + Txns + Lightning)",
+    "asic_lifecycle": "ASIC Lifecycle (Mfg + E-Waste)",
+    "facility": "Facility Construction",
+    "total_gross_label": "Total Gross",
+    "break_even_question": "Question:",
+    "break_even_q_text": "At what % of BTC $inflows must come from high-entropy spending for Bitcoin to <em>break even</em> on CO₂?",
+    "daily_gross": "Daily gross emissions",
+    "daily_inflow": "Daily inflow",
+    "intensity": "Intensity",
+    "result": "Result:",
+    "baseline": "Baseline",
+    "renewables": "Renewables 2030",
+    "current_delta": "Current δ = 34%",
+    "future_enh": "Potential for Future Enhancements",
+    "sources": "Sources: TradingView, UNEP, IPCC, Statista, CCAF, EXIOBASE, Talens-Perales (2025), Onat et al., de Vries, Bitnodes, 1ml.com, @BitcoinDegrowth",
+    "disclaimer": "Disclaimer",
+    "disclaimer_text": """This work tries to be as neutral, transparent and intellectually honest as possible.<br />It is a mere observation of an economic factor that could be often overlooked/discarded when assessing the Sustainability of the Bitcoin Network.<br />Where does the money invested in Bitcoin come from and how it displaces CO2 emissions from sectors into the Bitcoin Network per unit of dollar?<br />It is an invitation to perform more longitudinal studies on multi-year \"value sequestration\" of the Bitcoin hodling consumer behavior over the \"fast-paced\" consumerism enforced by the Fiat system.<br />It may be time to slow down a little bit extra for our Planet, our kids and the future generations of Humans.<br />Please feel free to improve and make your own assumptions."""
+}
+
+FR = {
+    # Header
+    "title": "Tableau de bord Décroissance Bitcoin — Scope 3 complet",
+    "motto": "HODL = Tueur d’entropie.",
+    "full_scope": "Scope 3 complet : cycle de vie ASIC, nœuds, installations, Lightning.",
+    "net_avoided": "CO₂ net évité depuis 2018 : <strong class=\"net-positive\">{net_co2_avoided:.0f} millions de tonnes</strong>",
+    "show_methodology": "Afficher la méthodologie complète",
+    "open_source": "Code source",
+
+    # Stats panel
+    "live": " ",
+    "cap": "Capitalisation",
+    "hashrate": "EH/s",
+    "efficiency": "J/TH",
+    "gross_avoided": "Émissions évitées brutes :",
+    "total_gross": "Émissions brutes totales :",
+    "net_avoided_label": "Émissions évitées net (millions de tonnes) :",
+    "co2_plot_title": "Impact Émission CO₂ cumulé — Scope 3 complet (Mt)",
+    "break_even_title": "Seuil d’équilibre δ — Scope 3 complet",
+    "sector_pie_title": "CO₂ évité par secteur (année en cours)",
+    "efficiency_plot_title": "Efficacité ASIC — Déclin exponentiel",
+
+    # Methodology
+    "methodology_title": "La question clé &agrave laquelle nous essayons de répondre et de quantifier en termes d’émissions de CO₂ au fil du temps :",
+    "methodology_question": "Quelle quantité d’émissions de CO₂ par dollar investi dans Bitcoin est « déplacée » d’autres secteurs, c’est-à-dire que auriez-vous acheté/investi à la place de Bitcoin ?",
+    "model_version": "Modèle mis à jour (Scope 3 complet)",
+    "high_entropy": "Intensité d’entropie/d'émissions élevée par unité de compte",
+    "displacement_rate": "Taux de déplacement δ",
+    "equation": "Équation",
+    "conservative": "Note : Nous adoptons une approche conservatrice en considérant que les flux de sorties reviennent également aux secteurs à forte intensité d’entropie/d'émissions",
+    "scope3_breakdown": "Répartition des émissions Scope 3 complet",
+    "mining_op": "Minage (opérationnel)",
+    "bau": "BAU (nœuds + tx + Lightning)",
+    "asic_lifecycle": "Cycle de vie ASIC (fabrication + déchets électroniques)",
+    "facility": "Construction d’installations",
+    "total_gross_label": "Total brut",
+    "break_even_question": "Question :",
+    "break_even_q_text": "À quel pourcentage des flux entrants en $ BTC doit provenir de dépenses à forte entropie pour que Bitcoin <em>atteigne l’équilibre</em> sur le CO₂ émis?",
+    "daily_gross": "Émissions brutes quotidiennes",
+    "daily_inflow": "Flux entrants quotidiens",
+    "intensity": "Intensité",
+    "result": "Résultat :",
+    "baseline": "Base 2025",
+    "renewables": "Renouvelables 2030",
+    "current_delta": "δ actuel = 34 %",
+    "future_enh": "Perspectives d’amélioration",
+    "sources": "Sources : TradingView, PNUE, GIEC, Statista, CCAF, EXIOBASE, Talens-Perales (2025), Onat et al., de Vries, Bitnodes, 1ml.com, @BitcoinDegrowth",
+    "disclaimer": "Avertissement",
+    "disclaimer_text": """Ce travail vise à être aussi neutre, transparent et intellectuellement honnête que possible.<br />Il s’agit d’une simple observation d’un facteur économique souvent négligé lors de l’évaluation de la durabilité/des facteurs qui agisse sur l'émission de CO2 dans nos économies et la place du réseau Bitcoin dans ce schéma.<br />D’où provient l’argent investi dans Bitcoin et comment déplace-t-il les émissions de CO₂ des secteurs économiques vers le réseau Bitcoin par dollar ?<br />C’est une invitation à réaliser davantage d’études longitudinales sur le comportement de « séquestration de valeur » du HODLing de Bitcoin par rapport au consumérisme rapide imposé par le système fiduciaire.<br />Il est peut-être temps de ralentir un peu plus pour notre planète, nos enfants et les générations futures.<br />N’hésitez pas à améliorer et à formuler vos propres hypothèses."""
+}
+
+# ----------------------------------------------------------------------
+# 15. HTML DASHBOARD — FULL SCOPE 3 
 # ----------------------------------------------------------------------
 # This section generates the final interactive HTML dashboard.
 # Features:
@@ -439,11 +544,11 @@ sectors_js = json.dumps([{'name': n, 'co2': round(c)} for n, c in zip(sector_nam
 # Uses Plotly.js for interactivity, Orbitron/Roboto Mono fonts.
 # Reference: Plotly.js open-source dashboard examples — https://plotly.com/javascript/
 html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="{{lang}}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bitcoin Degrowth Dashboard — Full Scope 3 | @BitcoinDegrowth</title>
+  <title>{{{{t.title}}}}</title>
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap');
@@ -471,65 +576,83 @@ html = f"""<!DOCTYPE html>
     .net-positive {{ color:#00ff00; font-size:1.6em; font-weight:bold; text-shadow:0 0 15px #00ff00; animation: glow 2s infinite alternate; }}
     @keyframes glow {{ from {{ text-shadow:0 0 15px #00ff00; }} to {{ text-shadow:0 0 25px #00ff00; }} }}
     .counter {{ font-family:'Orbitron'; font-size:2em; color:#0f0; text-shadow:0 0 15px #0f0; }}
+
+    /* ---- TOGGLE SWITCH ---- */
+    .lang-switch {{ position:absolute; top:15px; right:15px; display:flex; align-items:center; gap:8px; }}
+    .switch {{ position:relative; width:56px; height:28px; }}
+    .switch input {{ opacity:0; width:0; height:0; }}
+    .slider {{ position:absolute; cursor:pointer; inset:0; background:#333; border-radius:34px; transition:.4s; }}
+    .slider:before {{ position:absolute; content:""; height:22px; width:22px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:.4s; }}
+    input:checked + .slider {{ background:#f7931a; }}
+    input:checked + .slider:before {{ transform:translateX(28px); }}
+    .lang-label {{ font-size:0.9em; color:#aaa; }}
   </style>
 </head>
 <body>
-<div style="text-align:center; padding:15px 0; background:#000; border-bottom:1px solid #333; z-index:10;">
-  <h1>Bitcoin Degrowth Dashboard — Full Scope 3</h1>
+<div style="text-align:center; padding:15px 0; background:#000; border-bottom:1px solid #333; position:relative; z-index:10;">
+  <h1 data-t="title">{{{{t.title}}}}</h1>
+  <div class="lang-switch">
+    <span class="lang-label">EN</span>
+    <label class="switch">
+      <input type="checkbox" id="langToggle">
+      <span class="slider"></span>
+    </label>
+    <span class="lang-label">FR</span>
+  </div>
 </div>
 
 <div style="text-align:center; padding:18px 20px; background:linear-gradient(135deg, #1a1a1a, #000); border-top:1px solid #333; border-bottom:1px solid #333; font-size:1.1em; line-height:1.9; color:#fff; position:relative;">
-  <strong style="color:#f7931a;">HODL = Entropy Killer.</strong><br>
-  Full Scope 3: ASIC lifecycle, nodes, facilities, Lightning.<br>
-  Net CO₂ Avoided Since 2018: <strong class="net-positive">{net_co2_avoided:.0f} million tons</strong><br>
+  <strong style="color:#f7931a;" data-t="motto">{{{{t.motto}}}}</strong><br>
+  <span data-t="full_scope">{{{{t.full_scope}}}}</span><br>
+  <span data-t="net_avoided">{net_co2_avoided:.0f}</span><br>
   <span class="handle">@BitcoinDegrowth</span><br />
-  <button class="btn-details" onclick="toggleDetails()">Show Full Methodology</button>
+  <button class="btn-details" onclick="toggleDetails()" data-t="show_methodology">{{{{t.show_methodology}}}}</button>
   <div id="details" class="details">
-    <h3> The key question we try to answer and quantify in terms of CO2 emissions over time: <p>What amount of CO2 emission per $ invested in Bitcoin is "displaced" from other sectors e.g. what would have you bought/invested in instead of Bitcoin?</p></h3>
-    <h3>Updated Model (v3.3 — Full Scope 3)</h3>
-    <p><strong>1. High-entropy intensity</strong>: <code>0.51 kg CO₂ / $</code> – derived from EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors). Replaces prior 0.409 g/$.</p>
-    <p><strong>2. Displacement rate δ</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys (Coinbase, Motley Fool, Chainalysis). Retail: ~33 %, HNW: ~59 %, Institutions: ~8 %.</p>
-    <p><strong>Equation</strong>: Net = Σ(ΔCap × δ × I) − (Mining + BAU + ASIC Lifecycle + Facilities)</p>
-    <p>Note: We are taking a conservative approach and considering that outflows also displace back to high-entropy intensity sectors</p>
-    
-    <h3>Full Scope 3 Emissions Breakdown</h3>
+    <h3 data-t="methodology_title">{{{{t.methodology_title}}}}</h3>
+    <p data-t="methodology_question">{{{{t.methodology_question}}}}</p>
+
+    <h3 data-t="model_version">{{{{t.model_version}}}}</h3>
+    <p><strong data-t="high_entropy">{{{{t.high_entropy}}}}</strong>: <code>0.51 kg CO₂ / $</code> – EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors).</p>
+    <p><strong data-t="displacement_rate">{{{{t.displacement_rate}}}}</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys.</p>
+    <p><strong data-t="equation">{{{{t.equation}}}}</strong>: Net = Σ(ΔCap × δ × I) − (Mining + BAU + ASIC Lifecycle + Facilities)</p>
+    <p data-t="conservative">{{{{t.conservative}}}}</p>
+
+    <h3 data-t="scope3_breakdown">{{{{t.scope3_breakdown}}}}</h3>
     <ul>
-      <li><strong>Mining (Operational)</strong>: {merged['mining_emissions_mt'].mean()*365:.1f} Mt/year</li>
-      <li><strong>BAU (Nodes + Txns + Lightning)</strong>: {bau_annual_mt:.2f} Mt/year</li>
-      <li><strong>ASIC Lifecycle (Mfg + E-Waste)</strong>: {secondary_annual_mt - (15000*500)/(4*1e6):.1f} Mt/year</li>
-      <li><strong>Facility Construction</strong>: {(15000*500)/(4*1e6):.1f} Mt/year (amortized)</li>
-      <li><strong>Total Gross</strong>: {total_gross_emissions:.0f} Mt since 2018</li>
+      <li><strong data-t="mining_op">{{{{t.mining_op}}}}</strong>: {merged['mining_emissions_mt'].mean()*365:.1f} Mt/an</li>
+      <li><strong data-t="bau">{{{{t.bau}}}}</strong>: {bau_annual_mt:.2f} Mt/an</li>
+      <li><strong data-t="asic_lifecycle">{{{{t.asic_lifecycle}}}}</strong>: {secondary_annual_mt - (15000*500)/(4*1e6):.1f} Mt/an</li>
+      <li><strong data-t="facility">{{{{t.facility}}}}</strong>: {(15000*500)/(4*1e6):.1f} Mt/an (amortised)</li>
+      <li><strong data-t="total_gross_label">{{{{t.total_gross_label}}}}</strong>: {total_gross_emissions:.0f} Mt depuis 2018</li>
     </ul>
 
-    <h3>Break-even Displacement Rate (δ)</h3>
-    <p><strong>Question:</strong> At what % of BTC $inflows must come from high-entropy spending for Bitcoin to <em>break even</em> on CO₂?</p>
+    <h3 data-t="break_even_question">{{{{t.break_even_question}}}}</h3>
+    <p data-t="break_even_q_text">{{{{t.break_even_q_text}}}}</p>
     <ul>
-      <li><strong>Daily gross emissions</strong>: ~{gross_mt_day_vals['Baseline 2025']:.2} Mt / day (Baseline), ~{gross_mt_day_vals['Realistic 2030']:.2} Mt (Renewables 2030)</li>
-      <li><strong>Daily inflow</strong>: $1.8B (2025 avg)</li>
-      <li><strong>Intensity</strong>: 0.51 kg CO₂ per $ (EXIOBASE)</li>
+      <li><strong data-t="daily_gross">{{{{t.daily_gross}}}}</strong>: ~{gross_mt_day_vals['Baseline 2025']:.2} Mt / jour (Baseline), ~{gross_mt_day_vals['Realistic 2030']:.2} Mt (Renouvelables 2030)</li>
+      <li><strong data-t="daily_inflow">{{{{t.daily_inflow}}}}</strong>: $1.8B (moy. 2025)</li>
+      <li><strong data-t="intensity">{{{{t.intensity}}}}</strong>: 0.51 kg CO₂ / $ (EXIOBASE)</li>
     </ul>
-    <p><strong>Result:</strong></p>
+    <p><strong data-t="result">{{{{t.result}}}}</strong></p>
     <ul>
-      <li><strong>Baseline</strong>: <code>δ = {break_even_vals['Baseline 2025']:.1%}</code> → Bitcoin breaks even</li>
-      <li><strong>Renewables 2030</strong>: <code>δ = {break_even_vals['Realistic 2030']:.1%}</code> → only needed</li>
-      <li><strong>Current δ = 34%</strong> → <strong>tight margin today, safer margin as capital flows in</strong></li>
+      <li><strong data-t="baseline">{{{{t.baseline}}}}</strong>: <code>δ = {break_even_vals['Baseline 2025']:.1%}</code> → Bitcoin à l’équilibre</li>
+      <li><strong data-t="renewables">{{{{t.renewables}}}}</strong>: <code>δ = {break_even_vals['Realistic 2030']:.1%}</code> → seulement nécessaire</li>
+      <li><strong data-t="current_delta">{{{{t.current_delta}}}}</strong> → <strong>marge serrée aujourd’hui, marge plus sûre à mesure que les flux augmentent</strong></li>
     </ul>
-    <p>Even in a clean-grid future, <strong>only 1 in {int(1/break_even_vals['Realistic 2030'])} dollars</strong> needs to come from luxury/real-estate for Bitcoin to be net CO₂ positive.</p>
-    
-    <h3>Potential for Future Enhancements</h3>
+    <p>Même dans un futur à énergie propre, <strong>seulement 1 dollar sur {int(1/break_even_vals['Realistic 2030'])}</strong> doit provenir du luxe/immobilier pour que Bitcoin soit net CO₂ positif.</p>
+
+    <h3 data-t="future_enh">{{{{t.future_enh}}}}</h3>
     <ul>
-      <li>More accurate surveys/consumer behaviors tracking</li>
-      <li>User input form (δ, I) → instant recalculation</li>
-      <li>Monte-Carlo uncertainty bands</li>
+      <li>Enquêtes plus précises / suivi du comportement des consommateurs</li>
+      <li>Formulaire utilisateur (δ, I) → recalcul instantané</li>
+      <li>Bandes d’incertitude Monte-Carlo</li>
       <li>Export CSV / JSON</li>
-      <li>Live API for real-time survey data</li>
+      <li>API en direct pour les données d’enquête</li>
     </ul>
-    <small>Sources: TradingView, UNEP, IPCC, Statista, CCAF, EXIOBASE, Talens-Perales (2025), Onat et al., de Vries, Bitnodes, 1ml.com, @BitcoinDegrowth</small><br /><br />
-    <small style="text-align:center;"><b>Disclaimer</b><br /> This work tries to be as neutral, transparent and intellectualy honest as possible.<br /> It is a mere observation of an economic factor that could be often overlooked/discarded when assessing the Sustainability of the Bitcoin Network. <br /> Where does the money invested in Bitcoin come from and how it displaces CO2 emissions from sectors into the Bitcoin Network per unit of dollar?<br /> 
-    It is an invitation to perform more longitudinal studies on multi-year "value sequestration" of the Bitcoin hodling consumer behavior over the "fast-paced" consumerism enforced by the Fiat system.<br />It may be time to slow down a little bit extra for our Planet, our kids and the future generations of Humans.<br />Please feel free to improve and make your own assumptions.</small>
-
+    <small data-t="sources">{{{{t.sources}}}}</small><br /><br />
+    <small style="text-align:center;"><b data-t="disclaimer">{{{{t.disclaimer}}}}</b><br />{{{{t.disclaimer_text}}}}</small>
   </div>
-  <a class="btn-details" target='_blank' href="https://github.com/pascalranaora/bitcoin-degrowth" style="text-decoration:none">Open Source</a>
+  <a class="btn-details" target='_blank' href="https://github.com/pascalranaora/bitcoin-degrowth" style="text-decoration:none" data-t="open_source">{{{{t.open_source}}}}</a>
 </div>
 
 <div class="container">
@@ -539,31 +662,67 @@ html = f"""<!DOCTYPE html>
       Data Last Refreshed: <span id="generated-time"></span>
     </div>
     <div class="stats">
-      <span class="live">LIVE:</span> 
-      <strong>${current_cap/1e12:.2f}T</strong> Cap → 
-      <strong>{current_hr:.0f} EH/s</strong> → 
-      <strong>{current_eff:.1f} J/TH</strong>
+      <span class="live" data-t="live">{{{{t.live}}}}</span> 
+      <strong>${current_cap/1e12:.2f}T</strong> <span data-t="cap">{{{{t.cap}}}}</span> → 
+      <strong>{current_hr:.0f}</strong> <span data-t="hashrate">{{{{t.hashrate}}}}</span> → 
+      <strong>{current_eff:.1f}</strong> <span data-t="efficiency">{{{{t.efficiency}}}}</span>
       <br><br>
-      Gross Avoided: <strong>{total_gross_avoided:,.0f} Mt</strong><br>
-      Total Gross Emissions: <b style="color:red;">{total_gross_emissions:,.0f} Mt</b><br>
-      <strong>Net Avoided (Million Tons):</strong><br>
+      <span data-t="gross_avoided">{{{{t.gross_avoided}}}}</span> <strong>{total_gross_avoided:,.0f} Mt</strong><br>
+      <span data-t="total_gross">{{{{t.total_gross}}}}</span> <b style="color:red;">{total_gross_emissions:,.0f} Mt</b><br>
+      <strong data-t="net_avoided_label">{{{{t.net_avoided_label}}}}</strong><br>
       <div class="counter" id="net-counter">0 Mt</div>
-      <h2>Cumulative CO₂ Impact (Full Scope 3)</h2>
+      <h2 data-t="co2_plot_title">{{{{t.co2_plot_title}}}}</h2>
       <div id="co2-plot" style="height:48vh; margin-top:20px;"></div>
-      <h2>Break-even δ</h2>
+      <h2 data-t="break_even_title">{{{{t.break_even_title}}}}</h2>
       <div id="break-even-plot" style="height:40vh; margin-top:20px;"></div>
     </div>
   </div>
 
   <div class="panel">
-    <h2>CO₂ Avoided by Sector</h2>
+    <h2 data-t="sector_pie_title">{{{{t.sector_pie_title}}}}</h2>
     <div id="sector-pie" style="height:48vh;"></div>
-    <h2>Mining Efficiency (J/TH)</h2>
+    <h2 data-t="efficiency_plot_title">{{{{t.efficiency_plot_title}}}}</h2>
     <div id="efficiency-plot" style="height:48vh; margin-top:20px;"></div>
   </div>
 </div>
 
 <script>
+const translations = {{en: {json.dumps(EN)}, fr: {json.dumps(FR)}}};
+let currentLang = 'en';
+// === URL LANGUAGE DETECTION ===
+const urlParams = new URLSearchParams(window.location.search);
+const urlLang = urlParams.get('lang');
+if (urlLang === 'fr' || urlLang === 'en') {{
+  currentLang = urlLang;
+  document.getElementById('langToggle').checked = (currentLang === 'fr');
+}}
+const t = translations[currentLang];
+
+function updateTexts() {{
+  document.querySelectorAll('[data-t]').forEach(el => {{
+    const key = el.getAttribute('data-t');
+    let text = translations[currentLang][key] || el.innerHTML;
+    // replace placeholders
+    text = text.replace(/{{net_co2_avoided:.0f}}/g, '{net_co2_avoided:.0f}');
+    el.innerHTML = text;
+  }});
+  document.documentElement.lang = currentLang;
+  document.title = translations[currentLang].title;
+}}
+
+document.getElementById('langToggle').addEventListener('change', function() {{
+  currentLang = this.checked ? 'fr' : 'en';
+  updateTexts();
+  // re-render Plotly titles
+  Plotly.relayout('co2-plot', {{title: {{text: translations[currentLang].co2_plot_title, font: {{color: '#fff', size: 16}}}}}});
+  Plotly.relayout('break-even-plot', {{title: {{text: translations[currentLang].break_even_title, font: {{color: '#fff', size: 14}}}}}});
+  Plotly.relayout('sector-pie', {{title: {{text: translations[currentLang].sector_pie_title, font: {{color: '#fff', size: 16}}}}}});
+  Plotly.relayout('efficiency-plot', {{title: {{text: translations[currentLang].efficiency_plot_title, font: {{color: '#fff', size: 14}}}}}});
+}});
+
+// initial render
+updateTexts();
+
 document.getElementById('generated-time').textContent = new Date().toLocaleString('en-US', {{
   timeZone: 'America/Los_Angeles',
   month: 'short', day: 'numeric', year: 'numeric',
@@ -591,13 +750,13 @@ function toggleDetails() {{
 function animateCounter() {{
   let start = 0;
   const duration = 3000;
+  const startTime = Date.now();
   const step = () => {{
     const progress = Math.min((Date.now() - startTime) / duration, 1);
     const value = Math.floor(progress * finalNet);
     document.getElementById('net-counter').textContent = value.toLocaleString() + ' Mt';
     if (progress < 1) requestAnimationFrame(step);
   }};
-  const startTime = Date.now();
   requestAnimationFrame(step);
 }}
 
@@ -609,7 +768,7 @@ Plotly.newPlot('co2-plot', [
   {{ x: history.map(d=>d.date), y: history.map(d=>d.net), name: 'Net Avoided', line: {{color:'#ffaa00', width:4}} }}
 ], {{
   paper_bgcolor: '#000', plot_bgcolor: '#000', font: {{color: '#aaa'}},
-  title: {{text: 'Cumulative CO₂ Impact — Full Scope 3 (Mt)', font: {{color: '#fff', size: 16}}}},
+  title: {{text: t.co2_plot_title, font: {{color: '#fff', size: 16}}}},
   yaxis: {{gridcolor: '#333', title: 'Mt CO₂e'}}, 
   xaxis: {{gridcolor: '#333'}}, 
   legend: {{x:0, y:1, bgcolor: '#111'}},
@@ -620,7 +779,7 @@ Plotly.newPlot('efficiency-plot', [{{
   x: history.map(d=>d.date), y: history.map(d=>d.eff),
   mode: 'lines', line: {{color: '#4ecdc4', width: 3}}, name: 'J/TH'
 }}], {{
-  title: {{text: 'ASIC Efficiency — Power-Law Decline', font: {{color: '#fff', size: 14}}}},
+  title: {{text: t.efficiency_plot_title, font: {{color: '#fff', size: 14}}}},
   paper_bgcolor: '#000', plot_bgcolor: '#000', font: {{color: '#aaa'}},
   yaxis: {{title: 'J/TH', gridcolor: '#333'}}
 }}, {{responsive: true}});
@@ -633,7 +792,7 @@ Plotly.newPlot('sector-pie', [{{
   marker: {{colors: ['#ff6b6b','#4ecdc4','#45b7d1','#f9ca24']}},
   hoverinfo: 'label+value+percent'
 }}], {{
-  title: {{text: 'CO₂ Avoided by Sector (Current Year)', font: {{color: '#fff', size: 16}}}},
+  title: {{text: t.sector_pie_title, font: {{color: '#fff', size: 16}}}},
   paper_bgcolor: '#000', plot_bgcolor: '#000', font: {{color: '#aaa'}}
 }}, {{responsive: true}});
 
@@ -660,7 +819,7 @@ Plotly.newPlot('break-even-plot', [
   }}
 ], {{
   paper_bgcolor: '#000', plot_bgcolor: '#000', font: {{color: '#aaa'}},
-  title: {{text: 'Break-even δ — Full Scope 3', font: {{color: '#fff', size: 14}}}},
+  title: {{text: t.break_even_title, font: {{color: '#fff', size: 14}}}},
   yaxis: {{title: 'Displacement Rate (δ)', tickformat: '.0%', range: [0, 0.5], gridcolor: '#333'}},
   xaxis: {{gridcolor: '#333'}},
   legend: {{x: 0, y: 1, bgcolor: '#111'}}
