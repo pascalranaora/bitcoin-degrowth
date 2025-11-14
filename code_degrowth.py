@@ -343,9 +343,9 @@ current_eff   = merged['efficiency_jth'].iloc[-1]
 secondary_annual_mt = merged['secondary_mt'].mean() * 365
 bau_annual_mt = bau_mt_per_day * 365
 
-# --------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------
 # 12. BREAK-EVEN ANALYSIS – How much displacement (δ) is needed to offset Scope 3 modelling?
-# --------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------
 # Goal: Find δ such that Gross Avoided = Mining Emissions
 # Formula: δ_break = (Mining + BAU Scope 2 + Scope 3) (Mt/day) / (Δcap (USD/day) × I_high (kg CO₂/$))
 #
@@ -358,8 +358,7 @@ bau_annual_mt = bau_mt_per_day * 365
 #   • Baseline: 0.39 kg/kWh (current grid)
 #   • Renewables 2030: 0.25 kg/kWh (future clean grid)
 # Reference: IEA Net Zero by 2050 — https://www.iea.org/reports/net-zero-by-2050
-# --------------------------------------------------------------------------------------------------
-
+# ---------------------------------------------------------------------------------------------------
 SCENARIOS = {
     "Baseline 2025": {
         "mining_mt_per_day": 0.15,
@@ -442,9 +441,9 @@ EN = {
     "cap": "MarketCap",
     "hashrate": "EH/s",
     "efficiency": "J/TH",
-    "gross_avoided": "Gross Avoided:",
-    "total_gross": "Total Gross Emissions:",
-    "net_avoided_label": "Net Avoided (Million Tons):",
+    "gross_avoided": "Total Gross Avoided",
+    "total_gross": "Total Gross Emissions",
+    "net_avoided_label": "Net Avoided (Million Tons)",
     "co2_plot_title": "Cumulative CO₂ Impact — Full Scope 3 (Mt)",
     "break_even_title": "Break-even δ — Full Scope 3",
     "sector_pie_title": "CO₂ Avoided by Sector (Current Year)",
@@ -464,7 +463,7 @@ EN = {
     "bau": "BAU (Nodes + Txns + Lightning)",
     "asic_lifecycle": "ASIC Lifecycle (Mfg + E-Waste)",
     "facility": "Facility Construction",
-    "total_gross_label": "Total Gross",
+    "total_gross_label": "Gross",
     "break_even_question": "Question:",
     "margin_be": "tight margin today, safer margin as capital flows in",
     "beclean1": "Even in a clean-grid future, only 1 in",
@@ -498,9 +497,9 @@ FR = {
     "cap": "Capitalisation",
     "hashrate": "EH/s",
     "efficiency": "J/TH",
-    "gross_avoided": "Émissions évitées brutes :",
-    "total_gross": "Émissions brutes totales :",
-    "net_avoided_label": "Émissions évitées net (millions de tonnes) :",
+    "gross_avoided": "Émissions évitées brutes",
+    "total_gross": "Émissions brutes totales",
+    "net_avoided_label": "Émissions évitées net (millions de tonnes)",
     "co2_plot_title": "Impact Émission CO₂ cumulé — Scope 3 complet (Mt)",
     "break_even_title": "Seuil d’équilibre δ — Scope 3 complet",
     "sector_pie_title": "CO₂ évité par secteur (année en cours)",
@@ -674,9 +673,9 @@ html = f"""<!DOCTYPE html>
       <strong>{current_hr:.0f}</strong> <span data-t="hashrate">{{{{t.hashrate}}}}</span> → 
       <strong>{current_eff:.1f}</strong> <span data-t="efficiency">{{{{t.efficiency}}}}</span>
       <br><br>
-      <span data-t="gross_avoided">{{{{t.gross_avoided}}}}</span> <strong>{total_gross_avoided:,.0f} Mt</strong><br>
-      <span data-t="total_gross">{{{{t.total_gross}}}}</span> <b style="color:red;">{total_gross_emissions:,.0f} Mt</b><br>
-      <strong data-t="net_avoided_label">{{{{t.net_avoided_label}}}}</strong><br>
+      <span data-t="gross_avoided">{{{{t.gross_avoided}}}} :</span> <strong>{total_gross_avoided:,.0f} Mt</strong><br>
+      <span data-t="total_gross">{{{{t.total_gross}}}} :</span> <b style="color:red;">{total_gross_emissions:,.0f} Mt</b><br>
+      <strong data-t="net_avoided_label">{{{{t.net_avoided_label}}}} :</strong><br>
       <div class="counter" id="net-counter">0 Mt</div>
       <h2 data-t="co2_plot_title">{{{{t.co2_plot_title}}}}</h2>
       <div id="co2-plot" style="height:48vh; margin-top:20px;"></div>
@@ -728,6 +727,7 @@ document.getElementById('langToggle').addEventListener('change', function() {{
   currentLang = this.checked ? 'fr' : 'en';
   updateTexts();
   updateHTML();
+  renderCO2Plot();
   // re-render Plotly titles
   Plotly.relayout('co2-plot', {{title: {{text: translations[currentLang].co2_plot_title, font: {{color: '#fff', size: 16}}}}}});
   Plotly.relayout('break-even-plot', {{title: {{text: translations[currentLang].break_even_title, font: {{color: '#fff', size: 14}}}}}});
@@ -738,6 +738,7 @@ document.getElementById('langToggle').addEventListener('change', function() {{
 // initial render
 updateTexts();
 updateHTML();
+
 
 
 document.getElementById('generated-time').textContent = new Date().toLocaleString('en-US', {{
@@ -758,7 +759,7 @@ const history = data.map(d => ({{
   net: d.cum_net_avoided,
   eff: d.efficiency_jth
 }}));
-
+renderCO2Plot();
 function toggleDetails() {{
   const el = document.getElementById('details');
   el.style.display = el.style.display === 'block' ? 'none' : 'block';
@@ -777,20 +778,28 @@ function animateCounter() {{
   requestAnimationFrame(step);
 }}
 
-Plotly.newPlot('co2-plot', [
-  {{ x: history.map(d=>d.date), y: history.map(d=>d.gross), name: 'Gross Avoided', line: {{color:'#00ff00', width:3}} }},
-  {{ x: history.map(d=>d.date), y: history.map(d=>d.mining), name: 'Mining', line: {{color:'#ff6b6b', width:2}} }},
-  {{ x: history.map(d=>d.date), y: history.map(d=>d.bau), name: 'BAU', line: {{color:'#ffa500', width:2}} }},
-  {{ x: history.map(d=>d.date), y: history.map(d=>d.secondary), name: 'ASIC Lifecycle', line: {{color:'#9b59b6', width:2}} }},
-  {{ x: history.map(d=>d.date), y: history.map(d=>d.net), name: 'Net Avoided', line: {{color:'#ffaa00', width:4}} }}
-], {{
-  paper_bgcolor: '#000', plot_bgcolor: '#000', font: {{color: '#aaa'}},
-  title: {{text: t.co2_plot_title, font: {{color: '#fff', size: 16}}}},
-  yaxis: {{gridcolor: '#333', title: 'Mt CO₂e'}}, 
-  xaxis: {{gridcolor: '#333'}}, 
-  legend: {{x:0, y:1, bgcolor: '#111'}},
-  hovermode: 'x unified'
-}}, {{responsive: true}});
+function renderCO2Plot() {{
+  const traces = [
+    {{ x: history.map(d=>d.date), y: history.map(d=>d.gross), name: t.gross_avoided, line: {{color:'#00ff00', width:3}} }},
+    {{ x: history.map(d=>d.date), y: history.map(d=>d  .mining), name: 'Mining Emissions', line: {{color:'#ff6b6b', width:2}} }},
+    {{ x: history.map(d=>d.date), y: history.map(d=>d.bau), name: 'BAU Emissions', line: {{color:'#ffa500', width:2}} }},
+    {{ x: history.map(d=>d.date), y: history.map(d=>d.secondary), name: 'ASIC Lifecycle Emissions', line: {{color:'#9b59b6', width:2}} }},
+    {{ x: history.map(d=>d.date), y: history.map(d=>d.net), name: t.net_avoided_label, line: {{color:'#ffaa00', width:4}} }}
+  ];
+
+  const layout = {{
+    paper_bgcolor: '#000',
+    plot_bgcolor: '#000',
+    font: {{color: '#aaa'}},
+    title: {{text: t.co2_plot_title, font: {{color: '#fff', size: 16}}}},
+    yaxis: {{gridcolor: '#333', title: 'Mt CO₂e'}},
+    xaxis: {{gridcolor: '#333'}},
+    legend: {{x:0, y:1, bgcolor: '#111'}},
+    hovermode: 'x unified'
+  }};
+
+  Plotly.react('co2-plot', traces, layout, {{responsive: true}});
+}}
 
 Plotly.newPlot('efficiency-plot', [{{
   x: history.map(d=>d.date), y: history.map(d=>d.eff),
@@ -862,5 +871,5 @@ print(f"Efficiency: {current_eff:.1f} J/TH")
 print(f"BAU Emissions: {bau_annual_mt:.2f} Mt/year")
 print(f"Secondary Emissions: {secondary_annual_mt:.1f} Mt/year")
 print(f"Gross Avoided: {total_gross_avoided:,.0f} Mt")
-print(f"Total Gross Emissions: {total_gross_emissions:,.0f} Mt")
+print(f"Gross Emissions: {total_gross_emissions:,.0f} Mt")
 print(f"NET CO₂ AVOIDED: {net_co2_avoided:,.0f} Mt")
