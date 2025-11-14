@@ -735,11 +735,6 @@ document.getElementById('langToggle').addEventListener('change', function() {{
   Plotly.relayout('efficiency-plot', {{title: {{text: translations[currentLang].efficiency_plot_title, font: {{color: '#fff', size: 14}}}}}});
 }});
 
-// initial render
-updateTexts();
-updateHTML();
-
-
 
 document.getElementById('generated-time').textContent = new Date().toLocaleString('en-US', {{
   timeZone: 'America/Los_Angeles',
@@ -759,6 +754,9 @@ const history = data.map(d => ({{
   net: d.cum_net_avoided,
   eff: d.efficiency_jth
 }}));
+// initial render
+updateTexts();
+updateHTML();
 renderCO2Plot();
 function toggleDetails() {{
   const el = document.getElementById('details');
