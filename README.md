@@ -211,5 +211,5 @@ MIT License – Free to fork, extend, and HODL. See [LICENSE](LICENSE).
 **Bitcoin: Shrinking the entropy beast, one satoshi at a time.**  
 **Full Scope 3, maximum conservatism, still net positive.**  
 
-And you, do you really need the last Lambo or you can HODL a little longer?
+And you, do you really need the last Lambo or are you HODLing for 20 years, for your kids and/or a retirement somewhere?
 — @BitcoinDegrowth, November 13, 2025
