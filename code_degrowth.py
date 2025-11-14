@@ -525,7 +525,7 @@ html = f"""<!DOCTYPE html>
       <li>Live API for real-time survey data</li>
     </ul>
     <small>Sources: TradingView, UNEP, IPCC, Statista, CCAF, EXIOBASE, Talens-Perales (2025), Onat et al., de Vries, Bitnodes, 1ml.com, @BitcoinDegrowth</small><br /><br />
-    <small style="text-align:center;">Disclaimer: This work tries to be as neutral, transparent and intelectually honest as possible.<br /> It is a mere observation of an economic factor that could be often overlooked when assessing the Sustainability of the Bitcoin Network. <br /> Where does the money invested in Bitcoin come from and how it diplaces CO2 emissions from sectors into the Bitcoin Network per unit of dollar?<br /> 
+    <small style="text-align:center;"><b>Disclaimer</b><br /> This work tries to be as neutral, transparent and intellectualy honest as possible.<br /> It is a mere observation of an economic factor that could be often overlooked when assessing the Sustainability of the Bitcoin Network. <br /> Where does the money invested in Bitcoin come from and how it diplaces CO2 emissions from sectors into the Bitcoin Network per unit of dollar?<br /> 
     It is an invitation to perform more longitudinal studies on multi-year "value sequestration" of the Bitcoin hodling consumer behavior over the "fast-paced" consumerism enforced by the Fiat system.<br />It may be time to slow-down a little bit extra for our Planet, our kids and the future generations of Humans.<br />Please feel free to improve and make your own assumptions.</small>
 
   </div>
