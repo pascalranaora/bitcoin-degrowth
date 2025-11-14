@@ -514,7 +514,7 @@ html = f"""<!DOCTYPE html>
       <li><strong>Renewables 2030</strong>: <code>δ = {break_even_vals['Realistic 2030']:.1%}</code> → only needed</li>
       <li><strong>Current δ = 34%</strong> → <strong>tight margin today, safer margin as capital flows in</strong></li>
     </ul>
-    <p>Even in a clean-grid future, <strong>only 1 in {int(100/break_even_vals['Realistic 2030'])} dollars</strong> needs to come from luxury/real-estate for Bitcoin to be net CO₂ positive.</p>
+    <p>Even in a clean-grid future, <strong>only 1 in {int(1/break_even_vals['Realistic 2030'])} dollars</strong> needs to come from luxury/real-estate for Bitcoin to be net CO₂ positive.</p>
     
     <h3>Potential for Future Enhancements</h3>
     <ul>
