@@ -455,6 +455,7 @@ EN = {
     "methodology_question": "What amount of CO2 emission per $ invested in Bitcoin is \"displaced\" from other sectors e.g. what would have you bought/invested in instead of Bitcoin?",
     "model_version": "Updated Model (Full Scope 3)",
     "high_entropy": "High-entropy intensity",
+    "entropy_datasource": """EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors)""",
     "displacement_rate": "Displacement rate δ",
     "equation": "Equation",
     "conservative": "Note: We are taking a conservative approach and considering that outflows also displace back to high-entropy intensity sectors",
@@ -465,6 +466,9 @@ EN = {
     "facility": "Facility Construction",
     "total_gross_label": "Total Gross",
     "break_even_question": "Question:",
+    "margin_be": "tight margin today, safer margin as capital flows in",
+    "beclean1": "Even in a clean-grid future, only 1 in",
+    "beclean2": "dollars needs to come from luxury/real-estate/fash-fashion for Bitcoin to be net CO₂ positive",
     "break_even_q_text": "At what % of BTC $inflows must come from high-entropy spending for Bitcoin to <em>break even</em> on CO₂?",
     "daily_gross": "Daily gross emissions",
     "daily_inflow": "Daily inflow",
@@ -476,6 +480,7 @@ EN = {
     "future_enh": "Potential for Future Enhancements",
     "sources": "Sources: TradingView, UNEP, IPCC, Statista, CCAF, EXIOBASE, Talens-Perales (2025), Onat et al., de Vries, Bitnodes, 1ml.com, @BitcoinDegrowth",
     "disclaimer": "Disclaimer",
+    "future_work": """<li>More accurate surveys/consumer behaviors tracking</li><li>User input form (δ, I) → instant recalculation</li><li>Monte-Carlo uncertainty bands</li><li>Export CSV / JSON</li><li>Live API for real-time survey data</li>""",
     "disclaimer_text": """This work tries to be as neutral, transparent and intellectually honest as possible.<br />It is a mere observation of an economic factor that could be often overlooked/discarded when assessing the Sustainability of the Bitcoin Network.<br />Where does the money invested in Bitcoin come from and how it displaces CO2 emissions from sectors into the Bitcoin Network per unit of dollar?<br />It is an invitation to perform more longitudinal studies on multi-year \"value sequestration\" of the Bitcoin hodling consumer behavior over the \"fast-paced\" consumerism enforced by the Fiat system.<br />It may be time to slow down a little bit extra for our Planet, our kids and the future generations of Humans.<br />Please feel free to improve and make your own assumptions."""
 }
 
@@ -506,6 +511,7 @@ FR = {
     "methodology_question": "Quelle quantité d’émissions de CO₂ par dollar investi dans Bitcoin est « déplacée » d’autres secteurs, c’est-à-dire que auriez-vous acheté/investi à la place de Bitcoin ?",
     "model_version": "Modèle mis à jour (Scope 3 complet)",
     "high_entropy": "Intensité d’entropie/d'émissions élevée par unité de compte",
+    "entropy_datasource": """datasource: EXIOBASE 3.8+ (top 20 % des secteurs les plus carbones intensifs)""",
     "displacement_rate": "Taux de déplacement δ",
     "equation": "Équation",
     "conservative": "Note : Nous adoptons une approche conservatrice en considérant que les flux de sorties reviennent également aux secteurs à forte intensité d’entropie/d'émissions",
@@ -516,6 +522,9 @@ FR = {
     "facility": "Construction d’installations",
     "total_gross_label": "Total brut",
     "break_even_question": "Question :",
+    "margin_be": "marge serrée aujourd’hui, marge plus sûre à mesure que les flux augmentent",
+    "beclean1": "Même dans un futur à énergie propre, seulement 1 dollar sur",
+    "beclean2": "doit provenir du luxe/immobilier/fast fashion (par exemple) pour que Bitcoin soit net CO₂ positif",
     "break_even_q_text": "À quel pourcentage des flux entrants en $ BTC doit provenir de dépenses à forte entropie pour que Bitcoin <em>atteigne l’équilibre</em> sur le CO₂ émis?",
     "daily_gross": "Émissions brutes quotidiennes",
     "daily_inflow": "Flux entrants quotidiens",
@@ -527,6 +536,7 @@ FR = {
     "future_enh": "Perspectives d’amélioration",
     "sources": "Sources : TradingView, PNUE, GIEC, Statista, CCAF, EXIOBASE, Talens-Perales (2025), Onat et al., de Vries, Bitnodes, 1ml.com, @BitcoinDegrowth",
     "disclaimer": "Avertissement",
+    "future_work": """<li>Enquêtes plus précises / suivi du comportement des consommateurs</li><li>Formulaire utilisateur (δ, I) → recalcul instantané</li><li>Bandes d’incertitude Monte-Carlo</li><li>Export CSV / JSON</li><li>API en direct pour les données d’enquête</li>""",
     "disclaimer_text": """Ce travail vise à être aussi neutre, transparent et intellectuellement honnête que possible.<br />Il s’agit d’une simple observation d’un facteur économique souvent négligé lors de l’évaluation de la durabilité/des facteurs qui agisse sur l'émission de CO2 dans nos économies et la place du réseau Bitcoin dans ce schéma.<br />D’où provient l’argent investi dans Bitcoin et comment déplace-t-il les émissions de CO₂ des secteurs économiques vers le réseau Bitcoin par dollar ?<br />C’est une invitation à réaliser davantage d’études longitudinales sur le comportement de « séquestration de valeur » du HODLing de Bitcoin par rapport au consumérisme rapide imposé par le système fiduciaire.<br />Il est peut-être temps de ralentir un peu plus pour notre planète, nos enfants et les générations futures.<br />N’hésitez pas à améliorer et à formuler vos propres hypothèses."""
 }
 
@@ -612,7 +622,7 @@ html = f"""<!DOCTYPE html>
     <p data-t="methodology_question">{{{{t.methodology_question}}}}</p>
 
     <h3 data-t="model_version">{{{{t.model_version}}}}</h3>
-    <p><strong data-t="high_entropy">{{{{t.high_entropy}}}}</strong>: <code>0.51 kg CO₂ / $</code> – EXIOBASE 3.8+ (top 20 % most carbon-intensive final-demand sectors).</p>
+    <p><strong data-t="high_entropy">{{{{t.high_entropy}}}}</strong>: <code>0.51 kg CO₂ / $</code> – <em data-html="entropy_datasource"></em>.</p>
     <p><strong data-t="displacement_rate">{{{{t.displacement_rate}}}}</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys.</p>
     <p><strong data-t="equation">{{{{t.equation}}}}</strong>: Net = Σ(ΔCap × δ × I) − (Mining + BAU + ASIC Lifecycle + Facilities)</p>
     <p data-t="conservative">{{{{t.conservative}}}}</p>
@@ -635,20 +645,14 @@ html = f"""<!DOCTYPE html>
     </ul>
     <p><strong data-t="result">{{{{t.result}}}}</strong></p>
     <ul>
-      <li><strong data-t="baseline">{{{{t.baseline}}}}</strong>: <code>δ = {break_even_vals['Baseline 2025']:.1%}</code> → Bitcoin à l’équilibre</li>
+      <li><strong data-t="baseline">{{{{t.baseline}}}}</strong>: <code>δ = {break_even_vals['Baseline 2025']:.1%}</code> → Bitcoin CO2 equilibrium</li>
       <li><strong data-t="renewables">{{{{t.renewables}}}}</strong>: <code>δ = {break_even_vals['Realistic 2030']:.1%}</code> → seulement nécessaire</li>
-      <li><strong data-t="current_delta">{{{{t.current_delta}}}}</strong> → <strong>marge serrée aujourd’hui, marge plus sûre à mesure que les flux augmentent</strong></li>
+      <li><strong data-t="current_delta">{{{{t.current_delta}}}}</strong> → <strong><em data-html="margin_be"></em></strong></li>
     </ul>
-    <p>Même dans un futur à énergie propre, <strong>seulement 1 dollar sur {int(1/break_even_vals['Realistic 2030'])}</strong> doit provenir du luxe/immobilier pour que Bitcoin soit net CO₂ positif.</p>
+    <p><em data-html="beclean1"></em> {int(1/break_even_vals['Realistic 2030'])} <em data-html="beclean2"></em>.</p>
 
     <h3 data-t="future_enh">{{{{t.future_enh}}}}</h3>
-    <ul>
-      <li>Enquêtes plus précises / suivi du comportement des consommateurs</li>
-      <li>Formulaire utilisateur (δ, I) → recalcul instantané</li>
-      <li>Bandes d’incertitude Monte-Carlo</li>
-      <li>Export CSV / JSON</li>
-      <li>API en direct pour les données d’enquête</li>
-    </ul>
+    <ul data-html="future_work"></ul>
     <small data-t="sources">{{{{t.sources}}}}</small><br /><br />
     <small style="text-align:center;">
       <b data-t="disclaimer">{{{{t.disclaimer}}}}</b><br />
