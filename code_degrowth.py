@@ -650,7 +650,10 @@ html = f"""<!DOCTYPE html>
       <li>API en direct pour les données d’enquête</li>
     </ul>
     <small data-t="sources">{{{{t.sources}}}}</small><br /><br />
-    <small style="text-align:center;"><b data-t="disclaimer">{{{{t.disclaimer}}}}</b><br />{{{{t.disclaimer_text}}}}</small>
+    <small style="text-align:center;">
+      <b data-t="disclaimer">{{{{t.disclaimer}}}}</b><br />
+      <span data-html="disclaimer_text"></span>
+    </small>
   </div>
   <a class="btn-details" target='_blank' href="https://github.com/pascalranaora/bitcoin-degrowth" style="text-decoration:none" data-t="open_source">{{{{t.open_source}}}}</a>
 </div>
@@ -710,9 +713,17 @@ function updateTexts() {{
   document.title = translations[currentLang].title;
 }}
 
+function updateHTML() {{
+  document.querySelectorAll('[data-html]').forEach(el => {{
+    const key = el.getAttribute('data-html');
+    const html = translations[currentLang][key] || '';
+    el.innerHTML = html;
+  }});
+}}
 document.getElementById('langToggle').addEventListener('change', function() {{
   currentLang = this.checked ? 'fr' : 'en';
   updateTexts();
+  updateHTML();
   // re-render Plotly titles
   Plotly.relayout('co2-plot', {{title: {{text: translations[currentLang].co2_plot_title, font: {{color: '#fff', size: 16}}}}}});
   Plotly.relayout('break-even-plot', {{title: {{text: translations[currentLang].break_even_title, font: {{color: '#fff', size: 14}}}}}});
@@ -722,6 +733,8 @@ document.getElementById('langToggle').addEventListener('change', function() {{
 
 // initial render
 updateTexts();
+updateHTML();
+
 
 document.getElementById('generated-time').textContent = new Date().toLocaleString('en-US', {{
   timeZone: 'America/Los_Angeles',
