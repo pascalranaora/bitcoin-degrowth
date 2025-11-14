@@ -108,8 +108,7 @@ The dashboard visualizes Bitcoin's "entropy vacuum" effect: inflows displace hig
 - Export to PDF/CSV for reports.
 - Live API integration and more accurate surveys and peer-reviewed studies on consumer consumption behaviors deviation and/or portfolio investment allocation for real-time inflows and displacement rate computations.
 - Mobile-responsive design.
-
-Data last refreshed: Real-time (hash rate/efficiency from TradingView; cap from CryptoCap).
+- Data refresh: Cron job to run python script and commit back the result every X days
 
 ---
 
@@ -211,4 +210,6 @@ MIT License – Free to fork, extend, and HODL. See [LICENSE](LICENSE).
 
 **Bitcoin: Shrinking the entropy beast, one satoshi at a time.**  
 **Full Scope 3, maximum conservatism, still net positive.**  
+
+And you, do you really need the last Lambo or are you HODLing for 20 years, for your kids and/or a retirement somewhere?
 — @BitcoinDegrowth, November 13, 2025
