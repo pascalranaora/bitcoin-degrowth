@@ -118,8 +118,11 @@ def fetch(symbol, exchange, name):
     return None
 
 price_df   = fetch('BTCUSD', 'COINBASE', 'Price')
+print(price_df)
 cap_df     = fetch('BTC', 'CRYPTOCAP', 'Market Cap')
+print(cap_df)
 hashrate_df = fetch('HRATE', 'BCHAIN', 'Hashrate')
+print(hashrate_df)
 
 # ----------------------------------------------------------------------
 # 4. PROCESS DATA
@@ -144,9 +147,10 @@ cap_df     = process(cap_df)
 hashrate_df = process(hashrate_df)
 hashrate_df['close'] = hashrate_df['close'] / 1_000_000
 
-merged = price_df.merge(cap_df, on='date', suffixes=('_price', '_cap'))
-merged = merged.merge(hashrate_df, on='date')
+merged = price_df.merge(cap_df, on='date', suffixes=('_price', '_cap'), how="outer")
+merged = merged.merge(hashrate_df, on='date', how="outer")
 merged.rename(columns={'close': 'hashrate'}, inplace=True)
+merged.fillna(method='ffill',inplace=True)
 merged['delta_cap'] = merged['close_cap'].diff().fillna(merged['close_cap'])
 
 # ----------------------------------------------------------------------
@@ -229,7 +233,7 @@ def fetch_bau_emissions():
     bau_mt_yr = (total_bau_twh * 1e6 * carbon_intensity) / 1e6
     bau_mt_yr = min(bau_mt_yr, LIT_MAX_BAU_MT_YR)
 
-    print(f"DEBUG BAU: {total_bau_twh:.3f} TWh → {bau_mt_yr:.3f} Mt/yr")
+    # print(f"DEBUG BAU: {total_bau_twh:.3f} TWh → {bau_mt_yr:.3f} Mt/yr")
     return bau_mt_yr / 365
 
 bau_mt_per_day = fetch_bau_emissions()
@@ -427,12 +431,15 @@ sectors_js = json.dumps([{'name': n, 'co2': round(c)} for n, c in zip(sector_nam
 # ----------------------------------------------------------------------
 # 14. TRANSLATIONS
 # ----------------------------------------------------------------------
+# Déterminer la classe CSS en fonction de la valeur de net_co2_avoided
+net_avoided_class = "net-positive" if net_co2_avoided >= 0 else "net-negative"
+
 EN = {
     # Header
     "title": "Bitcoin Degrowth Dashboard — Full Scope 3",
     "motto": "HODL = Entropy Killer.",
     "full_scope": "Full Scope 3: ASIC lifecycle, nodes, facilities, Lightning.",
-    "net_avoided": "Net CO₂ Avoided Since 2018: <strong class=\"net-positive\">{net_co2_avoided:.0f} million tons</strong>",
+    "net_avoided": "<strong data-t=\"net_avoided\" class=\"{net_avoided_class}\">Net CO₂ Avoided Since 2018 : {net_co2_avoided:.0f} million tons</strong>",
     "show_methodology": "Show Full Methodology",
     "open_source": "Open Source",
 
@@ -488,7 +495,7 @@ FR = {
     "title": "Tableau de bord Décroissance Bitcoin — Scope 3 complet",
     "motto": "HODL = Tueur d’entropie.",
     "full_scope": "Scope 3 complet : cycle de vie ASIC, nœuds, installations, Lightning.",
-    "net_avoided": "CO₂ net évité depuis 2018 : <strong class=\"net-positive\">{net_co2_avoided:.0f} millions de tonnes</strong>",
+    "net_avoided": "<strong data-t=\"net_avoided\" class=\"{net_avoided_class}\">CO₂ net évité depuis 2018 : {net_co2_avoided:.0f} millions de tonnes</strong>",
     "show_methodology": "Afficher la méthodologie complète",
     "open_source": "Code source",
 
@@ -582,8 +589,10 @@ html = f"""<!DOCTYPE html>
     .motto {{ position:fixed; bottom:0; left:0; width:100%; text-align:center; padding:25px; background:linear-gradient(to top,#000,transparent); font-size:1.1em; line-height:1.9; z-index:100; animation: fadeIn 2s; }}
     .motto strong {{ color:#f7931a; text-shadow:0 0 10px #f7931a; }}
     .handle {{ color:#1da1f2; font-weight:bold; }}
-    .net-positive {{ color:#00ff00; font-size:1.6em; font-weight:bold; text-shadow:0 0 15px #00ff00; animation: glow 2s infinite alternate; }}
-    @keyframes glow {{ from {{ text-shadow:0 0 15px #00ff00; }} to {{ text-shadow:0 0 25px #00ff00; }} }}
+    .net-positive {{ color:#00ff00; font-size:1.6em; font-weight:bold; text-shadow:0 0 15px #00ff00; animation: glow-green 2s infinite alternate; }}
+    .net-negative {{ color:#ff0000; font-size:1.6em; font-weight:bold; text-shadow:0 0 15px #ff0000; animation: glow-red 2s infinite alternate; }}
+    @keyframes glow-green {{ from {{ text-shadow:0 0 15px #00ff00; }} to {{ text-shadow:0 0 25px #00ff00; }} }}
+    @keyframes glow-red {{ from {{ text-shadow:0 0 15px #ff0000; }} to {{ text-shadow:0 0 25px #ff0000; }} }}
     .counter {{ font-family:'Orbitron'; font-size:2em; color:#0f0; text-shadow:0 0 15px #0f0; }}
 
     /* ---- TOGGLE SWITCH ---- */
@@ -610,54 +619,56 @@ html = f"""<!DOCTYPE html>
   </div>
 </div>
 
-<div style="text-align:center; padding:18px 20px; background:linear-gradient(135deg, #1a1a1a, #000); border-top:1px solid #333; border-bottom:1px solid #333; font-size:1.1em; line-height:1.9; color:#fff; position:relative;">
-  <strong style="color:#f7931a;" data-t="motto">{{{{t.motto}}}}</strong><br>
-  <span data-t="full_scope">{{{{t.full_scope}}}}</span><br>
-  <span data-t="net_avoided">{net_co2_avoided:.0f}</span><br>
-  <span class="handle">@BitcoinDegrowth</span><br />
-  <button class="btn-details" onclick="toggleDetails()" data-t="show_methodology">{{{{t.show_methodology}}}}</button>
-  <div id="details" class="details">
-    <h3 data-t="methodology_title">{{{{t.methodology_title}}}}</h3>
-    <p data-t="methodology_question">{{{{t.methodology_question}}}}</p>
+<div style="text-align:center; padding:18px 20px; ...">
+    <strong style="color:#f7931a;" data-t="motto">{{{{t.motto}}}}</strong><br>
+    <span data-t="full_scope">{{{{t.full_scope}}}}</span><br>
 
-    <h3 data-t="model_version">{{{{t.model_version}}}}</h3>
-    <p><strong data-t="high_entropy">{{{{t.high_entropy}}}}</strong>: <code>0.51 kg CO₂ / $</code> – <em data-html="entropy_datasource"></em>.</p>
-    <p><strong data-t="displacement_rate">{{{{t.displacement_rate}}}}</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys.</p>
-    <p><strong data-t="equation">{{{{t.equation}}}}</strong>: Net = Σ(ΔCap × δ × I) − (Mining + BAU + ASIC Lifecycle + Facilities)</p>
-    <p data-t="conservative">{{{{t.conservative}}}}</p>
+    {EN['net_avoided'].format(net_co2_avoided=net_co2_avoided, net_avoided_class=net_avoided_class) if '{lang}'=='en' else FR['net_avoided'].format(net_co2_avoided=net_co2_avoided, net_avoided_class=net_avoided_class)}
+    <br>
+    <span class="handle">@BitcoinDegrowth</span><br />
+    <button class="btn-details" onclick="toggleDetails()" data-t="show_methodology">{{{{t.show_methodology}}}}</button>
+    <div id="details" class="details">
+      <h3 data-t="methodology_title">{{{{t.methodology_title}}}}</h3>
+      <p data-t="methodology_question">{{{{t.methodology_question}}}}</p>
 
-    <h3 data-t="scope3_breakdown">{{{{t.scope3_breakdown}}}}</h3>
-    <ul>
-      <li><strong data-t="mining_op">{{{{t.mining_op}}}}</strong>: {merged['mining_emissions_mt'].mean()*365:.1f} Mt/an</li>
-      <li><strong data-t="bau">{{{{t.bau}}}}</strong>: {bau_annual_mt:.2f} Mt/an</li>
-      <li><strong data-t="asic_lifecycle">{{{{t.asic_lifecycle}}}}</strong>: {secondary_annual_mt - (15000*500)/(4*1e6):.1f} Mt/an</li>
-      <li><strong data-t="facility">{{{{t.facility}}}}</strong>: {(15000*500)/(4*1e6):.1f} Mt/an (amortised)</li>
-      <li><strong data-t="total_gross_label">{{{{t.total_gross_label}}}}</strong>: {total_gross_emissions:.0f} Mt depuis 2018</li>
-    </ul>
+      <h3 data-t="model_version">{{{{t.model_version}}}}</h3>
+      <p><strong data-t="high_entropy">{{{{t.high_entropy}}}}</strong>: <code>0.51 kg CO₂ / $</code> – <em data-html="entropy_datasource"></em>.</p>
+      <p><strong data-t="displacement_rate">{{{{t.displacement_rate}}}}</strong>: <code>{EMPIRICAL_DISPLACEMENT_RATE:.0%}</code> (95 % CI {DELTA_CI_LOW:.0%}–{DELTA_CI_HIGH:.0%}) – weighted average from 2023-2025 investor surveys.</p>
+      <p><strong data-t="equation">{{{{t.equation}}}}</strong>: Net = Σ(ΔCap × δ × I) − (Mining + BAU + ASIC Lifecycle + Facilities)</p>
+      <p data-t="conservative">{{{{t.conservative}}}}</p>
 
-    <h3 data-t="break_even_question">{{{{t.break_even_question}}}}</h3>
-    <p data-t="break_even_q_text">{{{{t.break_even_q_text}}}}</p>
-    <ul>
-      <li><strong data-t="daily_gross">{{{{t.daily_gross}}}}</strong>: ~{gross_mt_day_vals['Baseline 2025']:.2} Mt / jour (Baseline), ~{gross_mt_day_vals['Realistic 2030']:.2} Mt (Renouvelables 2030)</li>
-      <li><strong data-t="daily_inflow">{{{{t.daily_inflow}}}}</strong>: $1.8B (moy. 2025)</li>
-      <li><strong data-t="intensity">{{{{t.intensity}}}}</strong>: 0.51 kg CO₂ / $ (EXIOBASE)</li>
-    </ul>
-    <p><strong data-t="result">{{{{t.result}}}}</strong></p>
-    <ul>
-      <li><strong data-t="baseline">{{{{t.baseline}}}}</strong>: <code>δ = {break_even_vals['Baseline 2025']:.1%}</code> → Bitcoin CO2 equilibrium</li>
-      <li><strong data-t="renewables">{{{{t.renewables}}}}</strong>: <code>δ = {break_even_vals['Realistic 2030']:.1%}</code> → seulement nécessaire</li>
-      <li><strong data-t="current_delta">{{{{t.current_delta}}}}</strong> → <strong><em data-html="margin_be"></em></strong></li>
-    </ul>
-    <p><em data-html="beclean1"></em> {int(1/break_even_vals['Realistic 2030'])} <em data-html="beclean2"></em>.</p>
+      <h3 data-t="scope3_breakdown">{{{{t.scope3_breakdown}}}}</h3>
+      <ul>
+        <li><strong data-t="mining_op">{{{{t.mining_op}}}}</strong>: {merged['mining_emissions_mt'].mean()*365:.1f} Mt/an</li>
+        <li><strong data-t="bau">{{{{t.bau}}}}</strong>: {bau_annual_mt:.2f} Mt/an</li>
+        <li><strong data-t="asic_lifecycle">{{{{t.asic_lifecycle}}}}</strong>: {secondary_annual_mt - (15000*500)/(4*1e6):.1f} Mt/an</li>
+        <li><strong data-t="facility">{{{{t.facility}}}}</strong>: {(15000*500)/(4*1e6):.1f} Mt/an (amortised)</li>
+        <li><strong data-t="total_gross_label">{{{{t.total_gross_label}}}}</strong>: {total_gross_emissions:.0f} Mt depuis 2018</li>
+      </ul>
 
-    <h3 data-t="future_enh">{{{{t.future_enh}}}}</h3>
-    <ul data-html="future_work"></ul>
-    <small data-t="sources">{{{{t.sources}}}}</small><br /><br />
-    <small style="text-align:center;">
-      <b data-t="disclaimer">{{{{t.disclaimer}}}}</b><br />
-      <span data-html="disclaimer_text"></span>
-    </small>
-  </div>
+      <h3 data-t="break_even_question">{{{{t.break_even_question}}}}</h3>
+      <p data-t="break_even_q_text">{{{{t.break_even_q_text}}}}</p>
+      <ul>
+        <li><strong data-t="daily_gross">{{{{t.daily_gross}}}}</strong>: ~{gross_mt_day_vals['Baseline 2025']:.2} Mt / jour (Baseline), ~{gross_mt_day_vals['Realistic 2030']:.2} Mt (Renouvelables 2030)</li>
+        <li><strong data-t="daily_inflow">{{{{t.daily_inflow}}}}</strong>: $1.8B (moy. 2025)</li>
+        <li><strong data-t="intensity">{{{{t.intensity}}}}</strong>: 0.51 kg CO₂ / $ (EXIOBASE)</li>
+      </ul>
+      <p><strong data-t="result">{{{{t.result}}}}</strong></p>
+      <ul>
+        <li><strong data-t="baseline">{{{{t.baseline}}}}</strong>: <code>δ = {break_even_vals['Baseline 2025']:.1%}</code> → Bitcoin CO2 equilibrium</li>
+        <li><strong data-t="renewables">{{{{t.renewables}}}}</strong>: <code>δ = {break_even_vals['Realistic 2030']:.1%}</code> → seulement nécessaire</li>
+        <li><strong data-t="current_delta">{{{{t.current_delta}}}}</strong> → <strong><em data-html="margin_be"></em></strong></li>
+      </ul>
+      <p><em data-html="beclean1"></em> {int(1/break_even_vals['Realistic 2030'])} <em data-html="beclean2"></em>.</p>
+
+      <h3 data-t="future_enh">{{{{t.future_enh}}}}</h3>
+      <ul data-html="future_work"></ul>
+      <small data-t="sources">{{{{t.sources}}}}</small><br /><br />
+      <small style="text-align:center;">
+        <b data-t="disclaimer">{{{{t.disclaimer}}}}</b><br />
+        <span data-html="disclaimer_text"></span>
+      </small>
+    </div>
   <a class="btn-details" target='_blank' href="https://github.com/pascalranaora/bitcoin-degrowth" style="text-decoration:none" data-t="open_source">{{{{t.open_source}}}}</a>
 </div>
 
@@ -675,7 +686,7 @@ html = f"""<!DOCTYPE html>
       <br><br>
       <span data-t="gross_avoided">{{{{t.gross_avoided}}}} :</span> <strong>{total_gross_avoided:,.0f} Mt</strong><br>
       <span data-t="total_gross">{{{{t.total_gross}}}} :</span> <b style="color:red;">{total_gross_emissions:,.0f} Mt</b><br>
-      <strong data-t="net_avoided_label">{{{{t.net_avoided_label}}}} :</strong><br>
+      <strong data-t="net_avoided_label" id="net_avoided_label">{{{{t.net_avoided_label}}}} :</strong><br>
       <div class="counter" id="net-counter">0 Mt</div>
       <h2 data-t="co2_plot_title">{{{{t.co2_plot_title}}}}</h2>
       <div id="co2-plot" style="height:48vh; margin-top:20px;"></div>
@@ -763,13 +774,27 @@ function toggleDetails() {{
   el.style.display = el.style.display === 'block' ? 'none' : 'block';
 }}
 
+
 function animateCounter() {{
+  const counterElement = document.getElementById('net-counter');
+  const counterLabel = document.getElementById('net_avoided_label');
   let start = 0;
   const duration = 3000;
   const startTime = Date.now();
   const step = () => {{
     const progress = Math.min((Date.now() - startTime) / duration, 1);
     const value = Math.floor(progress * finalNet);
+    if (value >= 0) {{
+    counterElement.style.color = '#00ff00'; // Vert
+    counterElement.style.textShadow = '0 0 15px #00ff00';
+    counterLabel.style.color = '#00ff00'; // Vert
+    counterLabel.style.textShadow = '0 0 15px #00ff00';
+    }} else {{
+      counterElement.style.color = '#ff0000'; // Rouge
+      counterElement.style.textShadow = '0 0 15px #ff0000';
+      counterLabel.style.color = '#ff0000'; // Rouge
+      counterLabel.style.textShadow = '0 0 15px #ff0000';
+    }}
     document.getElementById('net-counter').textContent = value.toLocaleString() + ' Mt';
     if (progress < 1) requestAnimationFrame(step);
   }};
